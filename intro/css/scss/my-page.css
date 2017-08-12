@@ -1585,3 +1585,43 @@ body {
   ==============================================================*/ }
 
 /*# sourceMappingURL=my-page.css.map */
+
+body {
+  overflow-x: hidden;
+}
+.main_header {
+  background-color: tomato;
+}
+.main_header .portfolio_title {
+  color: #FFF !important;
+}
+
+@media SCREEN AND (max-width:1024px) {
+  .main_header .portfolio_title {
+    padding: 10px;
+    display: block;
+    width: 100%;
+  }
+}
+
+@media SCREEN AND (min-width:1024px) {
+  .projects_area {
+    padding-top: 4.5em;
+  }
+}
+
+.code_editor .project_header {
+  height: 100vh;
+}
+.info_box h3 {
+  height: 65px;
+}
+.css_code_example,
+.js_code_example,
+.html_code_example {
+  height: 220px;
+}
+
+.css_code_example {
+  padding-left: 14% !important;
+}
