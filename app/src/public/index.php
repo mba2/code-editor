@@ -1,38 +1,34 @@
-<html>
+<html lang="en">
   <head>
-    <title>Editor de Texto</title>
+    <title>Code Editor</title>
     <meta name="viewport" content="initial-scale=1, user-scalable=no, maximum-scale=1, width=device-width">
     <meta charset="utf-8">
+    <?php require_once("../resources/templates/favicon.php");?>
 
-    <!-- NORMALIZE -->
-    <link rel="stylesheet" type="text/css" href="css/normalize.css">
-    <!-- CSS BOOTSTRAP -->
-    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
-    <!-- MEU CSS -->
-    <link rel="stylesheet" type="text/css" href="css/code-editor.css">
-
+    <link rel="stylesheet" href="./styles/bootstrap.min.css">
+    <link rel="stylesheet" href="./styles/code-editor.css">
   </head>
 
 
-  <body>
-
-
-      <main id="" class="wrapper">
-
-        <nav id="main_navbar" class="main_navbar">
-          <div id="logo_area" class="logo_area">
-                <span>Beta - v1.0</span>
-          </div>
-
-          <ul id="edit_options" class="edit_options">
-            <li id="html_btn" class="html_btn edit_btn selected">HTML</li>
-            <li id="css_btn" class="css_btn edit_btn selected">CSS</li>
-            <li id="js_btn" class="js_btn edit_btn selected">JS</li>
-          </ul>
-
-          <button id="exec_btn" class="exec_btn">Executar</button>
-
-        </nav>
+    <body>        
+        <main id="" class="">
+            <header class="l-header">
+                <nav id="main_navbar" class="navbar">
+                  <div id="logo_area" class="logo_area">
+                        <span>Beta - v1.1</span>
+                  </div>
+        
+                  <ul id="edit_options" class="edit_options">
+                    <li id="html_btn" class="html_btn edit_btn selected">HTML</li>
+                    <li id="css_btn" class="css_btn edit_btn selected">CSS</li>
+                    <li id="js_btn" class="js_btn edit_btn selected">JS</li>
+                  </ul>
+        
+                  <button id="exec_btn" class="exec_btn">Executar</button>
+        
+                </nav>
+            </header>
+            
 
         <section id="main_container" class="main_container">
 
