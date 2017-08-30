@@ -12,22 +12,27 @@
 
     <body>        
         <main id="" class="">
-            <header class="l-header">
-                <nav id="main_navbar" class="navbar">
-                  <div id="logo_area" class="logo_area">
-                        <span>Beta - v1.1</span>
-                  </div>
-        
-                  <ul id="edit_options" class="edit_options">
-                    <li id="html_btn" class="html_btn edit_btn selected">HTML</li>
-                    <li id="css_btn" class="css_btn edit_btn selected">CSS</li>
-                    <li id="js_btn" class="js_btn edit_btn selected">JS</li>
-                  </ul>
-        
-                  <button id="exec_btn" class="exec_btn">Executar</button>
-        
-                </nav>
-            </header>
+			<header  class="l-header">
+				<nav id="main_navbar" class="navbar">
+					<div class="wrapper navbar__wrapper">
+						<div id="logo_area" class="logo">
+							<span class="version-display">Beta - v1.1</span>
+						</div>
+					
+						<div class="code-sections">
+							<form>
+								<ul id="edit_options" class="edit_options code-sections__list">
+									<li id="html_btn" class="html_btn edit_btn selected code-sections__section">HTML</li>
+									<li id="css_btn" class="css_btn edit_btn selected code-sections__section">CSS</li>
+									<li id="js_btn" class="js_btn edit_btn selected code-sections__section">JS</li>
+								</ul>
+							</form>
+						</div>
+						
+						<button id="exec_btn" class="exec_btn code-sections__run-btn">Run</button>
+					</div>
+				</nav>
+			</header>
             
 
         <section id="main_container" class="main_container">

@@ -1,7 +1,9 @@
 # code-editor
 
 # CSS METHODOLOGY
-# BEM
+### BEM
+...
 
 # TASK RUNNER
-# GRUNT
+### GRUNT
+...
