@@ -1,67 +1,100 @@
-var CodeEditor = CodeEditor || {};
+// MODEL
+let model = {
+    "user" : {},
 
-document.querySelector('h1').textContent = 'Tesaaaaaaating';
+    setUserInfo : function() {
+        $.getJSON('../resources/sql/fake-data.json').then( (data) => { 
+            this.user = data['users'][0]
+        });
+    },
 
-console.log('er')
+    init : function() {
+        this.setUserInfo();
+    }
+};
 
-
-var fnTest = () => {console.log("Arrow Function")};
-// function setEditArea(e){
-//   var activeAreas = document.querySelectorAll(".active_area"),
-//       totalActiveAreas = activeAreas.length,
-//       recommendWidth = (window.innerWidth) / totalActiveAreas;
-//       console.log(activeAreas);
-
-//       for(var i = 0; i < totalActiveAreas;i++){
-//         activeAreas[i].style.width = recommendWidth - 8;
-//       }
-
-//       //
-//       // console.log(activeAreas);
-//       // console.log(window.innerWidth);
-//       // console.log(recommendWidth);
-
-
-
-
-// }
-
-// function runCode(){
-//   var htmlCode = $("#html_textarea").val();
-//   var cssCode  = $("#css_textarea").val();
-//   var jsCode   = $("#js_textarea").val();
-  
-//   $("#result_area iframe").contents()
-//                           .find("head")
-//                           .append(
-//                                 '<style>' + cssCode + '</style>'                                 
-//                            )
-//                            .end()
-//                            .find("body")
-//                            .html(htmlCode);
-
-//    document.getElementById("iframe").contentWindow.eval(jsCode);                        
-// }
-
-// window.onload = function(){
-
-
-//   //ALTERAR A APARÊNCIA DE CADA ITEM CLICADO//
-//   var options = document.querySelectorAll(".edit_btn");
-
-//     for(var i = 0; i < options.length ;i++){
-//       options[i].addEventListener("click",function(e){
-//           //TOGGLE -> PARA OS ITEM NA BARRRA DE NAVEGAÇÃO//
-//           this.classList.toggle("selected");
-//           ///TOGGLE -> PARA AS ÁREAS DE EDIÇÃO//
-//           document.getElementById(e.target.innerHTML.toLowerCase() +"_area").classList.toggle("active_area");
-//           console.log(document.getElementById(e.target.innerHTML.toLowerCase() +"_area"));
-//           //CHAMA A FUNÇÃO QUE IRÁ DETERMINAR O COMPRIMENTO IDEAL DE CADA ÁREA//
-//           setEditArea(e) ;
-//       });
-//     }//ALTERAR A APARÊNCIA DE CADA ITEM CLICADO//
-
-//     $("#exec_btn").on("click",runCode);
+// CONTROLLER
+let controller = {
     
-//   console.log(options);
-// };
+    getUserPlays : function() {
+        return model.user.plays;
+    },
+
+    onPlayClick : function() {
+
+    },
+    
+    init : function() {
+        console.log("Starting Code Editor");
+        console.log(this);
+
+        // INITIALIZE THE MODEL
+        model.init();
+
+        // INITIALIZE CONTROLLER'S METHODS
+        // this.getUserPlays();
+
+        // INITIALIZE APP`S VIEWS
+        v_user_menu.init();
+    }
+}
+// VIEWS
+let v_user_menu = {
+
+    // VIEW PROPERTIES
+    renderPlays : true,
+
+    // VIEW ELEMENS
+        
+        // PRE LOAD
+        dom_playsList : document.querySelector('.user-menu'),
+        
+        // POST LOAD
+    
+
+    // VIEW METHODS
+    createPlayItem : function(item) {
+        // A WRAPPER TO STORE THE PLAY ITEM
+        let dom_play_wrapper = document.createElement("ul");
+            dom_play_wrapper.classList = 'user-menu__wrapper';
+        
+        // THE PLAY ITEM ITSELF 
+        let dom_play_item = document.createElement("li");
+            dom_play_item.classList = "user-menu__play-item";
+            dom_play_item.textContent = item.name;
+        
+        // MOUNT AND RETURN THE PLAY ITEM 
+        return dom_play_wrapper.appendChild(dom_play_item);
+    },
+    
+    mountPlaysList : function() {
+        let _this = this;
+        let plays = controller.getUserPlays();      // STORE ALL USER'S PLAYS IN AN ARRAY
+        
+        plays.forEach(function(play) {             
+            dom_playsList.appendChild( _this.createPlayItem(play) );    
+        });
+
+        return dom_playsList;
+    },
+    
+    cacheElements : function() {
+        
+    },
+    
+    // RENDER FUNCTION 
+    render : function() {
+        // this.mountPlaysList();
+        // if(this.renderPlays) this.mountPlaysList();
+    },    
+    
+    // INTIALIZE FUNCTION 
+    init : function() {
+        this.mountPlaysList();
+        
+    }
+}
+
+window.addEventListener('DOMContentLoaded', () => {
+    controller.init();
+});
