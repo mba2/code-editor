@@ -1,0 +1,23 @@
+{
+  "name": "code-editor",
+  "version": "0.9.0",
+  "description": "...",
+  "main": "index.js",
+  "dependencies": {
+    "gulp": "^3.9.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mba2/code-editor.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mba2/code-editor/issues"
+  },
+  "homepage": "https://github.com/mba2/code-editor#readme"
+}
