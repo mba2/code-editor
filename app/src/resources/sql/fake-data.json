@@ -1,24 +1,24 @@
 {
     "users" : [
         {
-            "id"    : "",
-            "name"  : "name",
+            "id"    : "001",
+            "name"  : "name 1",
             "plays" : [
-                "play_001",
-                "play_002",
-                "play_003"
+                "001_play_001",
+                "001_play_002",
+                "001_play_003"
             ]  
         },
         {
-            "id"    : "",
-            "name"  : "name",
+            "id"    : "002",
+            "name"  : "name 2",
             "plays" : [
 
             ]  
         },
         {
-            "id"    : "",
-            "name"  : "name",
+            "id"    : "003",
+            "name"  : "name 3",
             "plays" : [
 
             ]  
