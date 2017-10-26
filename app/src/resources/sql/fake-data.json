@@ -1,0 +1,27 @@
+{
+    "users" : [
+        {
+            "id"    : "",
+            "name"  : "name",
+            "plays" : [
+                "play_001",
+                "play_002",
+                "play_003"
+            ]  
+        },
+        {
+            "id"    : "",
+            "name"  : "name",
+            "plays" : [
+
+            ]  
+        },
+        {
+            "id"    : "",
+            "name"  : "name",
+            "plays" : [
+
+            ]  
+        }
+    ]
+}
