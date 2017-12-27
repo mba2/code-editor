@@ -4,9 +4,9 @@
             "id"    : "001",
             "name"  : "name 1",
             "plays" : [
-                "001_play_001",
-                "001_play_002",
-                "001_play_003"
+                "001_play_001.json",
+                "001_play_002.json",
+                "001_play_003.json"
             ]  
         },
         {

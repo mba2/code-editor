@@ -111,7 +111,7 @@ gulp.task('scripts', () => {
         .pipe(babel({
             presets: ['es2015']
         }))
-        .pipe(uglify(options))
+        // .pipe(uglify(options))
         .pipe(sourcemaps.write())
         .pipe(gulp.dest('build/public/js'))
         .pipe(livereload());
@@ -147,7 +147,7 @@ gulp.task('watch', () => {
 gulp.task('default', [
     'clean',
     'copy__html',
-    'copy__backend-resources',
+    // 'copy__backend-resources',
     'styles',
     'scripts',
     // 'images',
