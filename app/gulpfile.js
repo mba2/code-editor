@@ -92,7 +92,7 @@ gulp.task('styles', () => {
         .pipe(autoprefixer({
             browsers: ['last 20 versions', 'IE 8']
         }))
-        .pipe(concat('one.css'))
+        .pipe(concat('app.css'))
         .pipe(sourcemaps.write())
         .pipe(gulp.dest('build/public/css'))
         .pipe(livereload());

@@ -66,12 +66,12 @@ let model = {
     /* If after 20 verifications any module still pending... stop the verifications
     *  and consider this scenario as a critical error...
     */
-    else if(++this.statusCounter === 10) {
+    else if(++this.statusCounter === 5) {
       console.warn("Some essential data couldn't be loaded");
       return false;
     }
     /** Otherwise...execute another verification */
-    setTimeout(() => self.loaderChecker() ,500);
+    setTimeout(() => self.loaderChecker() , 1500);
   },
 
   init : function() {
@@ -84,7 +84,7 @@ let model = {
 let controller = {
 
   removeMainLoader : () => {
-    const el = document.querySelector(".loader--main");
+    const el = document.querySelector(".js_loader-main");
       el.parentNode.removeChild(el);
   },
 
