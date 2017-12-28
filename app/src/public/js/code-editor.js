@@ -1,18 +1,13 @@
 "use strict";
 // MODEL
 let model = {
-  "states" : [
-    {
-      "name": "userInfo",
-      "status" : false,
-      "action" : "loadUserInfo"
-    }
-  ],
-
-  "statusCounter" : 0,
-  "isLoaded" : false, // {{PENDING}}
+  /** STATE INFO */
+  "states" : {
+    "userInfo": false
+  },
   "loadedModules" : [],
   "failedModules" : [],
+  /** STATE INFO */
 
   "user" : {},
 
@@ -30,13 +25,9 @@ let model = {
       .then( (response) => { 
         if(response.status !== 200) console.error("error ==> ", response.status)
         
-        response.json().then( data => {
-          /** Store the returned data into the model object */
-          model.user = data["users"][userId];
-          /** Set the model state for 'User Info' as 'Loaded' */
-          model.states.forEach( (item) => {
-            if(item.name === "userInfo") item.status = true;
-          });
+        response.json().then( data => {     
+          model.user = data["users"][userId];      /** Store the returned data into the model object */          
+          model.states.userInfo = true; /** Set the model state for 'User Info' as 'Loaded' */
         });
     });
   },
@@ -46,16 +37,15 @@ let model = {
    * remove the page's loader     * 
   */
   loaderChecker : function() {
-    const self = this;
+    const self = this;                                               /** Store the Object reference for future use */   
+    if(!this.loaderChecker.counter) this.loaderChecker.counter = 0;  /** Set a counter into this function */
 
-    // Clear the arrays that store the model's modules to perform a new verification
-    this.failedModules = this.failedModules = [];
-
-    this.states.forEach( (state) => {   
-      // console.log(state);
-      if(!state.status) this.failedModules.push(state);    // Defines which modules are fully loaded
-      else this.loadedModules.push(state);                 // Defines which modules aren't fully loaded
-    });
+    this.failedModules = this.failedModules = [];                    /** Clears the arrays that store the model's modules to perform a new verification */ 
+    
+    for (const state in model.states) {
+      if(!model.states[state]) this.failedModules.push(state);    // Defines which modules are fully loaded
+      else this.loadedModules.push(state);                        // Defines which modules aren't fully loaded 
+    }
 
     /** If all modules are fully loaded ... terminates the verification process */
     if(!this.failedModules.length) {
@@ -66,7 +56,7 @@ let model = {
     /* If after 20 verifications any module still pending... stop the verifications
     *  and consider this scenario as a critical error...
     */
-    else if(++this.statusCounter === 5) {
+    else if(++this.loaderChecker.counter === 5) {
       console.warn("Some essential data couldn't be loaded");
       return false;
     }
