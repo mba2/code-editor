@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,43 +6,60 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>test</title>
-    <link rel='stylesheet' href="./css/app.css">
+    <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/2.5.1/firebaseui.css" />
+
 </head>
 <body>
   <h1>PAGE TIasdasdaTLE</h1>
-  <div class="loader js_loader-main">
+  <!-- <div class="loader js_loader-main">
     <div class="loader__circle loader__circle--1"></div>
     <div class="loader__circle loader__circle--2"></div>
-  </div>
+  </div> -->
+
   <header class="header">
-      <nav id="app-navbar" class="app-navbar">
-        <div class="app-navbar__wrapper">
-          <div id="logo_area" class="logo">
-            <span class="version-display">Beta -
-              <i class="version-display__icon">v1.1</i>
-            </span>
-          </div>
-    
-          <div class="lang-selectors">
-            <form>
-              <ul id="edit_options" class="lang-selectors__list">
-                <input id="html" class="lang-selectors__input" type="checkbox" name="html" value="html">
-                <label for="html" class="lang-selectors__label">html</label>
-                <input id="css" class="lang-selectors__input" type="checkbox" name="html" value="css">
-                <label for="css" class="lang-selectors__label">css</label>
-                <input id="js" class="lang-selectors__input" type="checkbox" name="html" value="js">
-                <label for="js" class="lang-selectors__label">js</label>                
-                <li id="html_btn" class="html_btn edit_btn selected lang-selectors__section">HTML</li>
-                <li id="css_btn" class="css_btn edit_btn selected lang-selectors__section">CSS</li>
-                <li id="js_btn" class="js_btn edit_btn selected lang-selectors__section">JS</li>
-              </ul>
-            </form>
-          </div>
-          <button id="exec_btn" class="exec_btn lang-selectors__run-btn">Run</button>
+    <nav id="app-navbar" class="app-navbar">
+      <div class="app-navbar__wrapper">
+        <!-- <div id="logo_area" class="logo">
+          <span class="version-display">Beta -
+            <i class="version-display__icon">v1.1</i>
+          </span>
         </div>
-      </nav>
-    </header>
-  <script src='js/code-editor.js'></script>
-  <script src="http://localhost:35729/livereload.js"></script>
+  
+        <div class="lang-selectors">
+          <form>
+            <ul id="edit_options" class="lang-selectors__list">
+              <input id="html" class="lang-selectors__input" type="checkbox" name="html" value="html">
+              <label for="html" class="lang-selectors__label">html</label>
+              <input id="css" class="lang-selectors__input" type="checkbox" name="html" value="css">
+              <label for="css" class="lang-selectors__label">css</label>
+              <input id="js" class="lang-selectors__input" type="checkbox" name="html" value="js">
+              <label for="js" class="lang-selectors__label">js</label>                
+              <li id="html_btn" class="html_btn edit_btn selected lang-selectors__section">HTML</li>
+              <li id="css_btn" class="css_btn edit_btn selected lang-selectors__section">CSS</li>
+              <li id="js_btn" class="js_btn edit_btn selected lang-selectors__section">JS</li>
+            </ul>
+          </form>
+        </div>
+      <button id="exec_btn" class="exec_btn lang-selectors__run-btn">Run</button> -->
+      </div>
+      <div class="user-area">
+        <div class="user-area__btns">
+          <button class="user-area__sign-in">
+            sign in
+          </button>
+          <button class="user-area__sign-up">
+            sign up
+          </button>
+          <div class="user-area__auth">
+
+          </div>
+        </div>
+      </div>
+    </nav>
+  </header> 
+  
+ 
+  <script src="https://cdn.firebase.com/libs/firebaseui/2.5.1/firebaseui.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/4.8.1/firebase.js"></script>
 </body>
 </html>
