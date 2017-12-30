@@ -1,7 +1,7 @@
-module.exports = (ctx) => ({
+module.exports = (context) => ({
     plugins: {
         // 'postcss-import': {},
         'postcss-cssnext': {},
-        "cssnano" : ctx.env === 'production' ? {} : false
+        "cssnano" : context.env === 'production' ? { autoprefixer : false } : false
     }
   })

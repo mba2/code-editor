@@ -1,7 +1,0 @@
-{
-    "id"        : "003",
-    "markup"    : "<div class=\"div_test\">\r\n <p class='p_test'>First Example<\/p>\r\n<\/div>",
-    "styles"    : "div {  \r\n  color: red;\r\n}",
-    "scripts"   : "$(function() {\r\n  alert(\"start\");\r\n});"
-}
-    

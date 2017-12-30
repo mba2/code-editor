@@ -1,28 +1,28 @@
 {
   "name": "webpack_boilerplate",
-  "version": "0.9.0",
+  "version": "1.0.0",
+  "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "webpack-dev-server --hotOnly --open --config webpack.dev.js",
-    "build": "cross-env NODE_ENV=production webpack --config webpack.prod.js"
+    "dev": "cross-env NODE_ENV=development webpack-dev-server --config webpack.dev.config",
+    "build": "cross-env NODE_ENV=production webpack --config webpack.prod.config"
   },
-  "author": "",
-  "license": "ISC",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/mba2/webpack_boilerplate.git"
   },
+  "author": "",
+  "license": "ISC",
   "bugs": {
     "url": "https://github.com/mba2/webpack_boilerplate/issues"
   },
   "homepage": "https://github.com/mba2/webpack_boilerplate#readme",
-  "description": "Some build options for Web Development",
   "devDependencies": {
     "babel-core": "^6.26.0",
     "babel-loader": "^7.1.2",
     "babel-preset-env": "^1.6.1",
     "clean-webpack-plugin": "^0.1.17",
-    "cross-env": "^5.1.1",
+    "cross-env": "^5.1.3",
     "css-loader": "^0.28.7",
     "extract-text-webpack-plugin": "^3.0.2",
     "file-loader": "^1.1.6",
@@ -30,7 +30,6 @@
     "html-webpack-plugin": "^2.30.1",
     "image-webpack-loader": "^3.4.2",
     "node-sass": "^4.7.2",
-    "postcss": "^6.0.14",
     "postcss-cssnext": "^3.0.2",
     "postcss-loader": "^2.0.9",
     "sass-loader": "^6.0.6",
@@ -38,6 +37,6 @@
     "url-loader": "^0.6.2",
     "webpack": "^3.10.0",
     "webpack-dev-server": "^2.9.7",
-    "webpack-merge": "^4.1.1"
+    "webpack-html-plugin": "^0.1.1"
   }
 }

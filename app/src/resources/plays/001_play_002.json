@@ -1,7 +1,0 @@
-{
-    "id"        : "002",
-    "markup"    : "<div class=\"div_test\">\r\n <p class='p_test'>Second File<\/p>\r\n<\/div>",
-    "styles"    : "div {  \r\n  color: green;\r\n}",
-    "scripts"   : "$(function() {\r\n  alert(\"second example\");\r\n});"
-}
-    
