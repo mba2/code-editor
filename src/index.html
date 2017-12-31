@@ -19,15 +19,73 @@
     <span class="logo logo--header">logo</span>
     <nav id="app-navbar" class="app-navbar">
       <div class="user-area">
+        <!-- 
         <div class="user-area__auth-display">
-          <button class="btn btn--sign-options">
-            sign options
+          <button class="btn btn--sign-in">
+            sign in
+          </button>
+          <button class="btn btn--new">
+            sign up
+          </button>
+          <button class="btn btn--sign-out hide">
+            sing out
           </button>
         </div>
+
         <div class="auth-box hide">
-          <button class="btn btn--close">x</button>
+          <button class="auth-box__btn auth-box__btn--close">x</button>
+
+
+
+          <div class="auth-box__area auth-box__area--signup auth-box__area--signup-email hide">
+
+            <div class="auth-box__form-group">
+              <label for="sigup-name-input">name</label>
+              <input id="sigup-name-input" class="auth-box__input auth-box__input--name" type="text">
+            </div>  
+          
+            <div class="auth-box__form-group">
+              <label for="signup-email-input">email</label>
+              <input id="signup-email-input" class="auth-box__input auth-box__input--email" type="email">
+            </div>  
+
+            <div class="auth-box__form-group">
+              <label for="signup-pass-input">password</label>
+              <input id="signup-pass-input" class="auth-box__input auth-box__input--password" type="password">
+            </div>  
+              
+            <div class="auth-box__form-group">
+              <button class="btn btn--submit">sign up</button>
+            </div> 
+          
+          </div>
+          
+
+          <div class="auth-box__area auth-box__area--signin-email hide">
+
+            <div class="auth-box__form-group">
+              <label for="signin-email-input">email</label>
+              <input id="signin-email-input" type="email" class="auth-box__input auth-box__input--email">
+            </div> 
+
+            <div class="auth-box__form-group">
+              <label for="signin-pass-input">password</label>
+              <input id="signin-pass-input" class="auth-box__input auth-box__input--password" type="password">
+            </div>  
+
+            <div class="auth-box__form-group">
+              <button class="btn sign-in--email">log in</button>
+            </div>
+          
+          </div>
+        
         </div>
-        <div class="user-area__name hide">Unknow</div>
+
+        <button class="btn sign-in--google">google</button> 
+      -->
+
+        <div class="user-area__name">Unknow</div>
+        
       </div>
     </nav>
   </header> 
