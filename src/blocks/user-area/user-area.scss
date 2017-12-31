@@ -1,0 +1,26 @@
+@font-face {
+	font-family: 'Dosis';
+	src: url('./dosis-extrabold.woff2') format('woff2'),
+				url('./dosis-extrabold.woff') format('woff');
+	font-style: normal;
+	font-weight: bold; 
+}
+
+@import "../global/global";
+
+.user-area {
+	justify-content: space-around;
+	align-items: center;
+
+	&__sign-options {
+
+	}
+	&__name {
+		
+	}
+	
+	.btn {
+
+	}
+	
+}

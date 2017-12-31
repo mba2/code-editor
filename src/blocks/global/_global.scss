@@ -1,0 +1,30 @@
+// @font-face {
+//     font-family: 'PT';
+//     src: url('./PTSansBold.woff2') format('woff2'),
+//          url('./PTSansBold.woff') format('woff');
+//     font-style: normal;
+//     font-weight: bold; 
+// }
+
+// PLACEHOLDERS
+%fullScreenElem {
+	display: flex;
+	width: 100vw;
+	height: 100vh;
+	position: fixed;
+	left: 0;
+	top:0;
+}
+
+%centerContent {
+	align-items: center;
+	justify-content: center;
+}
+
+body {
+    font-family: 'PT';
+}
+
+.hide {
+    display: none;
+}
