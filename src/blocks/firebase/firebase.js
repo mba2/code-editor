@@ -11,4 +11,4 @@
       firebase.initializeApp(config);
         
       var model__users = firebase.database().ref().child('users');
-      model__users.on('value', snap => console.log(snap.val()));
+      // model__users.on('value', snap => console.log(snap.val()));

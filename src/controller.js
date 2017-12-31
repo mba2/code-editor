@@ -1,5 +1,8 @@
 // CONTROLLER
 export const controller = {
-    views : []
+    views : [],
+    addViews : function(viewList) {
+        this.view = viewList.map(function(v) { return v; });
+    }
 };
 
