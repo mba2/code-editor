@@ -8,5 +8,7 @@ export const model = {
   "failedModules" : [],
   /** STATE INFO */
 
-  "user" : {},
+  "user" : {
+    name : "Mario"
+  },
 };

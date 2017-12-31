@@ -16,19 +16,17 @@ console.log("controller:",controller);
 
 
 //====== VIEWS
-import { v_auth_box } from "./view";
+import { 
+	v_auth_box,
+	v_user_area
+} from "./view";
 
 controller.addViews([
-	v_auth_box
+	v_auth_box,
+	v_user_area
 ]);
 
-
-console.log(v_auth_box);
-
-
-
-
-
+controller.init();
 
 /** ALL MODULES ARE IMPORTED HERE 
 */ 
