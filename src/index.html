@@ -10,88 +10,10 @@
 
 </head>
 <body>
-  <!-- <div class="loader js_loader-main">
-    <div class="loader__circle loader__circle--1"></div>
-    <div class="loader__circle loader__circle--2"></div>
-  </div> -->
-
-  <header class="header">
-    <span class="logo logo--header">logo</span>
-    <nav id="app-navbar" class="app-navbar">
-      <div class="user-area">
-        <!-- 
-        <div class="user-area__auth-display">
-          <button class="btn btn--sign-in">
-            sign in
-          </button>
-          <button class="btn btn--new">
-            sign up
-          </button>
-          <button class="btn btn--sign-out hide">
-            sing out
-          </button>
-        </div>
-
-        <div class="auth-box hide">
-          <button class="auth-box__btn auth-box__btn--close">x</button>
-
-
-
-          <div class="auth-box__area auth-box__area--signup auth-box__area--signup-email hide">
-
-            <div class="auth-box__form-group">
-              <label for="sigup-name-input">name</label>
-              <input id="sigup-name-input" class="auth-box__input auth-box__input--name" type="text">
-            </div>  
-          
-            <div class="auth-box__form-group">
-              <label for="signup-email-input">email</label>
-              <input id="signup-email-input" class="auth-box__input auth-box__input--email" type="email">
-            </div>  
-
-            <div class="auth-box__form-group">
-              <label for="signup-pass-input">password</label>
-              <input id="signup-pass-input" class="auth-box__input auth-box__input--password" type="password">
-            </div>  
-              
-            <div class="auth-box__form-group">
-              <button class="btn btn--submit">sign up</button>
-            </div> 
-          
-          </div>
-          
-
-          <div class="auth-box__area auth-box__area--signin-email hide">
-
-            <div class="auth-box__form-group">
-              <label for="signin-email-input">email</label>
-              <input id="signin-email-input" type="email" class="auth-box__input auth-box__input--email">
-            </div> 
-
-            <div class="auth-box__form-group">
-              <label for="signin-pass-input">password</label>
-              <input id="signin-pass-input" class="auth-box__input auth-box__input--password" type="password">
-            </div>  
-
-            <div class="auth-box__form-group">
-              <button class="btn sign-in--email">log in</button>
-            </div>
-          
-          </div>
-        
-        </div>
-
-        <button class="btn sign-in--google">google</button> 
-      -->
-
-        <div class="user-area__name">Unknow</div>
-        <div class="user-area__photo">Photo</div>
-        <button id="test">click</button>
-      </div>
-    </nav>
-  </header> 
-   
-  <script src="https://cdn.firebase.com/libs/firebaseui/2.5.1/firebaseui.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/4.8.1/firebase.js"></script>
+  <div id="cat">
+    <h2 data-bind='text: name'></h2>
+    <div data-bind='text: clickCount'></div>
+    <img src="" alt="" data-bind='attr: {src : imgSrc, attr: imgAttr}, click: incrementeCounter'/>
+  </div>
 </body>
 </html>

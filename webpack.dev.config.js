@@ -61,6 +61,9 @@ const config = {
     },
 
     plugins : [
+        new webpack.ProvidePlugin({
+            'ko' : 'knockout'
+        }),
         new HTML({
             template : "./src/index.html",
             // hash : true,
