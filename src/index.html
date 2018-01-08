@@ -10,10 +10,21 @@
 
 </head>
 <body>
-  <div id="cat">
+  <div id="cat" data-bind='with:currentCat'>
     <h2 data-bind='text: name'></h2>
+    <div data-bind='text: level'></div> 
     <div data-bind='text: clickCount'></div>
-    <img src="" alt="" data-bind='attr: {src : imgSrc, attr: imgAttr}, click: incrementeCounter'/>
+    <img src="" alt="" style='width: 100px; height: 100px;' data-bind='attr: {src : imgSrc, attr: imgAttr}, click: $parent.incrementCounter'/>
+    <div>
+      <h1>Nicknames</h1>
+      <ul data-bind='foreach: nickNames'>
+        <li data-bind="text: $data"></li>
+      </ul>
+    </div>
+  </div>
+
+  <div data-bind="foreach: catList">
+    <li data-bind='text: $data.name, click: $parent.changeCat'></li>
   </div>
 </body>
 </html>
