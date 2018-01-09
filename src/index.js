@@ -21,10 +21,11 @@ import {
 	v_user_area
 } from "./view";
 
-controller.addViews([
+controller.addViews(
+	v_auth_box,
 	v_auth_box,
 	v_user_area
-]);
+);
 
 controller.init();
 

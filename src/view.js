@@ -5,7 +5,7 @@ export const v_auth_box = {
 	cacheElements : function() {
 		this.authBox = document.querySelector(".auth-box");
 		this.authBoxCloseBtn = document.querySelector(".auth-box .btn--close");
-    },
+  },
 
     render : function() {
     },
@@ -25,11 +25,11 @@ export const v_user_area = {
   },
 
   changeUserName : function() {
-    const self = this;
+    const SELF = this;
     let t = document.querySelector("#test");
       t.addEventListener("click", function() {
         controller.changeUserName("Heisenberg");
-        self.render();
+        SELF.render();
       })
   },
   

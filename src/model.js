@@ -6,9 +6,12 @@ export const model = {
   },
   "loadedModules" : [],
   "failedModules" : [],
-  /** STATE INFO */
 
   "user" : {
     name : "Mario"
   },
+
+  "app" : {
+    
+  }
 };
