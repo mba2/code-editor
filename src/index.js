@@ -16,15 +16,14 @@ console.log("controller:",controller);
 
 
 //====== VIEWS
-import { 
-	v_auth_box,
-	v_user_area
-} from "./view";
+import { v_user_area } from './blocks/user-area/user-area';
+import { v_editor } from './blocks/editor/editor';
+// import { v_auth_box } from './blocks/auth_box/';
+	
 
 controller.addViews(
-	v_auth_box,
-	v_auth_box,
-	v_user_area
+	// v_user_area,
+	v_editor
 );
 
 controller.init();
