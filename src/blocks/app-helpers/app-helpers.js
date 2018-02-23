@@ -10,6 +10,7 @@ export const AppHelpers = {
     console.warn("Request failed: " + status);
     return false;
   },
+  
   /**
    * @param  {string} url
    * @param  {string} loadingModule

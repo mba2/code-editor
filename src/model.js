@@ -6,7 +6,7 @@ export const model = {
    * A LIST CONTAINING ALL PARTS OF DATA THAT MUST BE SET INTO THE MODEL
    * SO THE APPLICATION CAN WORK
   */
-  "expectedModules" : [
+  "requiredModules" : [
     "userPersonalInfo"
     // "userPlayInfo"
   ],
@@ -25,43 +25,45 @@ export const model = {
   /**
    * FUNCTIONS THAT ARE RESPONSIBLE FOR THE `MODEL` OPERATION
   */
-  applicationIsReady : function applicationIsReady(attempts) {
-    if(!applicationIsReady.counter) {
-      applicationIsReady.counter = 0;
-      // console.log(typeof applicationIsReady.counter);
-    }
-    else {
-      console.log("Works");
-    }
+
+  /**
+   * @param  {number} counter
+   * @param  {number} attempts
+   */
+  applicationIsReady : function applicationIsReady(counter,attempts) {
     
-    setTimeout(() => {
-        if(applicationIsReady.counter > 3) {
-          console.log("failed");
-          return;
-        }else {
-          applicationIsReady.counter++;
-          console.log(applicationIsReady.counter);
-            applicationIsReady();
-        }
-        //     console.warn("App is not fully loaded");
-        //   }else {
-          //     applicationIsReady.counter++;
-          
-          //   }
-          
-    }, 1500);     
+    let modulesToLoad = model.requiredModules.length || 0;
+    
+    /** IF NO MODULE IS REQUIRED ... TERMINATE THIS FUNCTION*/
+    if(!modulesToLoad) return;
+
+    setTimeout(() => { 
+      if(counter > attempts) {
+        console.warn("A module hasn`t been loaded!");
+        return;
+      }
+      // console.log("Checking!!!!!");
+      if(model.requiredModules.length === model.successfulModules.length) {
+        console.log("all set");
+        return true;
+      }        
+      // CALL THE FUNCTION ANOTHER TIME
+      applicationIsReady(++counter,attempts);
+    }, 1000);     
   },
+  
   /**
    ** FUNCTIONS THAT MUST BE INVOKED SO THE APPLICATION CAN BE CONSIDERED
    ** READY TO USE 
-  */
+   *  @param  {} id
+   */
   userPersonalInfo : function(id) {
     if(!id) {
       console.warn("No user id was given to retrieve user personal data");  
       return false;
     }
 
-    let url = "https://my-json-server.typicode.com/mba2/fake-data/users",
+    let url = "https://my-json-server.typicode.com/mba2/fake-data/uses",
       loadingModule = "userPersonalInfo";
 
     AppHelpers.customFetch(url,loadingModule)
@@ -79,6 +81,6 @@ export const model = {
 
   init : function() {
     this.userPersonalInfo(2445);
-    this.applicationIsReady();
+    this.applicationIsReady(1,3);
   }
 };
