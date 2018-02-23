@@ -1,6 +1,8 @@
 import "./editor.scss";
 
 export const v_editor = {
+  currentTheme : "solarized_light",
+
   cacheElements : function() {
     this.boxes = [].slice.call(document.querySelectorAll(".editor__box"));
 	},
@@ -15,31 +17,21 @@ export const v_editor = {
   },
 
   createBoxes : function() {
-    console.log(this.boxes);
+    const self = this;
 
-    this.boxes.forEach( box => {
-      let boxType = box.getAttribute('id');
-      console.log(boxType);
+    this.boxes.forEach( function(box) {
+      let boxType = box.getAttribute('id'),
+        editor = null;
+        try{
+          boxType = boxType.split('--')[1];
+          editor = ace.edit("editor--" + boxType);
+          editor.setTheme("ace/theme/" + self.currentTheme);
+          editor.session.setMode("ace/mode/" + boxType);
+        } catch(e) { console.warn(e) }; 
     });
   },
 
   start : function () {
-    let editor = ace.edit("editor--html");
-    editor.setTheme("ace/theme/solarized_light");
-    editor.session.setMode("ace/mode/html");
-
-    let editor2 = ace.edit("editor--css");
-    editor2.setTheme("ace/theme/solarized_light");
-    editor2.session.setMode("ace/mode/css");
-
-    let editor3 = ace.edit("editor--js");
-    editor3.setTheme("ace/theme/solarized_light");
-    editor3.session.setMode("ace/mode/js");
-
-    // let editor = ace.edit("editor");
-    // editor.setTheme("ace/theme/solarized_light");
-    // editor.session.setMode("ace/mode/javascript");
-
     // document.querySelector("#save").addEventListener("click", () => {
     //   // console.log("save");
       
@@ -57,12 +49,43 @@ export const v_editor = {
 
   init : function() {
     this.cacheElements();
-    this.createBoxes();
+    // this.createBoxes();
 
     this.start();
 
     document.querySelector("#measures").addEventListener("click", () => {
       this.getBoxesMeasures();
     })
+
+
+    /*
+    *
+        QUICK DRAFT FOR VANILHA DRAG !!!
+        let body = document.querySelector("body");
+
+        function mouseMove(e) {
+
+          console.log(e);
+        }
+
+        function mouseUp() {
+
+          console.log("body");
+          body.removeEventListener("mousemove", mouseMove);
+          body.removeEventListener("mouseup", mouseUp);
+        }
+        
+
+        document.querySelector(".divider").addEventListener("mousedown", (e) => {
+          
+          body.addEventListener("mousemove", mouseMove);
+          body.addEventListener("mouseup", mouseUp);
+        });
+     *
+     */
+    
+    
+
   }
 }
+
