@@ -16,8 +16,9 @@ export const v_user_area = {
   },
   
   getUserPersonalInfo : function() {
-    let test = controller.getUserPersonalInfo(2445);
-    console.log(test);
+    let test = controller.userPersonalInfo('001').then( (user) => {
+      this.userName.innerHTML = user.name;
+    });
   },
 
   render : function() {

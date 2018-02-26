@@ -19,29 +19,36 @@ export const controller = {
 	},
 
 	/*
-	*  @param  {number} id
+	*  @param  {string} id
   */
-  getUserPersonalInfo : function(id) {
+  userPersonalInfo : function(id) {
     if(!id) {
       console.warn("No user id was given to retrieve user personal data");  
       return false;
     }
 
-		let url = "https://my-json-server.typicode.com/mba2/fake-data/users",
+		let url = "https://my-json-server.typicode.com/mba2/code-editor/users",
 			loadingModule = "userPersonalInfo";
 
-		AppHelpers.customFetch(url,loadingModule)
+		return AppHelpers.customFetch(url,loadingModule)
 			.then( (data) => {
-				model.userInfo = data.filter( (user) => {
-					if(user['user'].id == id) {
-						model.successfulModules.push(loadingModule);
-						model.user.id = user['user'].id;
-						model.user.name = user['user'].name;
-						return user.user;
-					} 
-				});
+				let result = null;
+
+					model.userInfo = data.filter( (user) => {
+						if(user.id == id) {
+							model.successfulModules.push(loadingModule);
+							model.user.id = user.id;
+							model.user.name = user.name;
+							result = user;
+							return this;
+						} 
+					});		
+						
+					return result;			
 			})
 			.catch( (data) => { console.log(data);})
+
+			// return model.user;
 	},
 		
 	init : function() {

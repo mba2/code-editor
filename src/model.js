@@ -15,7 +15,8 @@ export const model = {
   "failedModules" : [],
 
   "user" : {
-    "name" :  null
+    "name": null,
+    "id"  : null
   },
 
   "app" : {
