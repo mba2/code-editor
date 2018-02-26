@@ -1,53 +1,56 @@
 'use strict';
 
+/** 
+ * APP UTILITIES 
+ * AN OBJECT THAT HOLDS HELPER FUNCTIONS TO BE USED BY THE APPLICATION
+*/
+import { AppHelpers } from "./blocks/app-helpers/app-helpers";
+
+/**
+ * IMPORT THE MODEL
+*/
 import { model } from "./model";
-// CONTROLLER
+
 export const controller = {
-    views : [],
-    addViews : function(...viewList) {
-			this.views = viewList.map(function(v) { return v; });
-    },
+	views : [],
+	
+	loadViews : function(...viewList) {
+		this.views = viewList.map(function(v) { return v; });
+	},
 
-    getUserName : function() {
-			return model.user.name;
-    },
-
-    changeUserName : function (test) {
-				// this.debug.showCurrentViews.apply(this);
-				// this.debug.firstView.apply(this);
-				// this.debug.userInfo.apply(this);
-				
-			return model.user.name = test;
-    },
-
-    init : function() {
-			this.views.forEach( 
-				(view) => view.init()
-			);        
-    },
-
-    debug : {
-			showCurrentViews : function() {
-				console.log(`Views with for-of:`);
-				for (let view of this.views) {
-					console.log(view);
-				}
-				console.log(`Views with for-in:`);
-				for (let i in this.views) {
-					console.log(`view ${i}: `, this.views[i]);
-				}
-			},
-			firstView : function() {
-				let [first,...rest] = this.views;
-				console.log(`The First view: `,first);
-				console.log(`The rest of the views: `,rest);
-			},
-			userInfo : function() {
-				let { user, states } = model;
-				console.log(user);
-				console.log(states);
-			}
+	/*
+	*  @param  {number} id
+  */
+  getUserPersonalInfo : function(id) {
+    if(!id) {
+      console.warn("No user id was given to retrieve user personal data");  
+      return false;
     }
-    
+
+		let url = "https://my-json-server.typicode.com/mba2/fake-data/users",
+			loadingModule = "userPersonalInfo";
+
+		AppHelpers.customFetch(url,loadingModule)
+			.then( (data) => {
+				model.userInfo = data.filter( (user) => {
+					if(user['user'].id == id) {
+						model.successfulModules.push(loadingModule);
+						model.user.id = user['user'].id;
+						model.user.name = user['user'].name;
+						return user.user;
+					} 
+				});
+			})
+			.catch( (data) => { console.log(data);})
+	},
+		
+	init : function() {
+		/**
+		 * THE LOOP WILL EXECUTE A init() METHOD FOR ALL LOADED VIEWS
+		*/
+		this.views.forEach( 
+			(view) => view.init()
+		);        
+	}    
 };
 

@@ -80,7 +80,7 @@ export const model = {
   },
 
   init : function() {
-    this.userPersonalInfo(2445);
-    this.applicationIsReady(1,3);
+    // this.userPersonalInfo(2445);
+    // this.applicationIsReady(1,3);
   }
 };
