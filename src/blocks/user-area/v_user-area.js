@@ -7,28 +7,42 @@ import "./v_user-area.scss";
 */
 import { controller } from "../../controller";
 
-
 export const v_user_area = {
 
 	cacheElements : function() {
-    this.userName = document.querySelector(".user-area__name");
-    console.log("caching elements - v_user_area!");
+    this.dom_userName = document.querySelector(".user-area__name");
+    this.dom_userPhoto = document.querySelector(".user-area__photo");
+    this.dom_updateBtn = document.querySelector("#update");
   },
   
-  getUserPersonalInfo : function() {
-    let test = controller.userPersonalInfo('001').then( (user) => {
-      this.userName.innerHTML = user.name;
-    });
+  setUserInfo : function(state) {
+    this.dom_userName.innerHTML = state.name;
+    this.dom_userPhoto.innerHTML = state.photo;
   },
 
-  render : function() {
-    console.log("Rendering - v_user_area!");
-  },
-  
+  /**
+    * ALL HANDLERS EVENTS FOR THIS VIEW IS PUT INSIDE THIS ARRAY. 
+    * THIS HANDLERS WILL BE SET ON THE init() METHOD
+  */ 
+  handlers : [
+    function click_changeUserName(SELF) {
+      SELF.dom_updateBtn.addEventListener('click', () => {
+        controller.userPersonalInfo.call(SELF,'001');
+      });
+    }
+  ],
+
+  /**
+    * ALL METHODS OF THIS VIEW THAT MUST BE EXECUTED ON THE INITIALIZATION
+  */ 
   init : function() {
     this.cacheElements();
-    this.getUserPersonalInfo();
-    this.render();
+    // this.getUserPersonalInfo('001');
+
+    /**
+     *  SET ALL VIEW`S EVENT HANDLERS
+    */
+    this.handlers.forEach(handler => handler(this));
   }
 };
 

@@ -16,7 +16,8 @@ export const model = {
 
   "user" : {
     "name": null,
-    "id"  : null
+    "id"  : null,
+    "phpto" : null
   },
 
   "app" : {

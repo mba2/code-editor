@@ -14,6 +14,9 @@ import { model } from "./model";
 export const controller = {
 	views : [],
 	
+	/**
+	 * @param  {object} ...viewList
+	 */
 	loadViews : function(...viewList) {
 		this.views = viewList.map(function(v) { return v; });
 	},
@@ -30,27 +33,25 @@ export const controller = {
 		let url = "https://my-json-server.typicode.com/mba2/code-editor/users",
 			loadingModule = "userPersonalInfo";
 
-		return AppHelpers.customFetch(url,loadingModule)
+		AppHelpers.customFetch(url,loadingModule)
 			.then( (data) => {
-				let result = null;
-
-					model.userInfo = data.filter( (user) => {
+					data.filter( (user) => {
 						if(user.id == id) {
+							/** INFORM THE APPLICATION THAT A SPECIFIC CHUNCK OF DATA WAS SUCCESSFUL LOADED  */ 
 							model.successfulModules.push(loadingModule);
+							/** STORE THE USER'S INFO RETURNED FROM THE SERVER   */ 
 							model.user.id = user.id;
 							model.user.name = user.name;
-							result = user;
-							return this;
+							model.user.photo = user.photo;
 						} 
 					});		
-						
-					return result;			
+					/** UPDATE THIS VIEW */
+					this.setUserInfo(model.user);				
 			})
 			.catch( (data) => { console.log(data);})
-
-			// return model.user;
 	},
-		
+
+	
 	init : function() {
 		/**
 		 * THE LOOP WILL EXECUTE A init() METHOD FOR ALL LOADED VIEWS
