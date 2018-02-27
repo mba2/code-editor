@@ -3,7 +3,15 @@
     {
       "id" : "001",
       "name" : "Heisenberg",
-      "photo" : "Walter_white.png"
+      "photo" : "Walter_white.png",
+      "pens" : [
+        {
+          "id" : "000001",
+          "name" : "simple promise",
+          "type" : "js",
+          "content" : "return new Promise();" 
+        }
+      ]
     },
     {
       "id" : "1545",
