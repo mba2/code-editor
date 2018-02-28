@@ -10,6 +10,24 @@
           "name" : "simple promise",
           "type" : "js",
           "content" : "return new Promise();" 
+        },
+        {
+          "id" : "000002",
+          "name" : "function",
+          "type" : "js",
+          "content" : "function() {...};" 
+        },
+        {
+          "id" : "00003",
+          "name" : "arrow function",
+          "type" : "js",
+          "content" : "() => {...};" 
+        },
+        {
+          "id" : "000004",
+          "name" : "css variables",
+          "type" : "css",
+          "content" : ":root { --test: 10px; }" 
         }
       ]
     },
