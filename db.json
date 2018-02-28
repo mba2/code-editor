@@ -6,30 +6,31 @@
       "photo" : "Walter_white.png",
       "pens" : [
         {
-          "id" : "000001",
+          "id" : "1",
           "name" : "simple promise",
           "type" : "js",
           "content" : "return new Promise();" 
         },
         {
-          "id" : "000002",
+          "id" : "2",
           "name" : "function",
           "type" : "js",
           "content" : "function() {...};" 
         },
         {
-          "id" : "00003",
+          "id" : "3",
           "name" : "arrow function",
           "type" : "js",
           "content" : "() => {...};" 
         },
         {
-          "id" : "000004",
+          "id" : "4",
           "name" : "css variables",
           "type" : "css",
           "content" : ":root { --test: 10px; }" 
         }
-      ]
+      ],
+      "lastPenId" : "4"
     },
     {
       "id" : "1545",
