@@ -1,4 +1,4 @@
-import { model } from "../../model";
+import { store } from "../../store";
 
 export const AppHelpers = {
   /**
@@ -6,7 +6,7 @@ export const AppHelpers = {
    * @param  {string} status
   */
   unexpectedRequest : function(moduleName,status) {
-    model.failedModules.push(moduleName);
+    store.failedModules.push(moduleName);
     console.warn("Request failed: " + status);
     return false;
   },

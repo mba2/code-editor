@@ -1,9 +1,11 @@
+'use strict';
+
 import { AppHelpers } from "./blocks/app-helpers/app-helpers";
 
 // MODEL
-export const model = {
-  /** LIST MODEL 
-   * A LIST CONTAINING ALL PARTS OF DATA THAT MUST BE SET INTO THE MODEL
+export const store = {
+  /** LIST STORE 
+   * A LIST CONTAINING ALL PARTS OF DATA THAT MUST BE SET INTO THE STORE
    * SO THE APPLICATION CAN WORK
   */
   "requiredModules" : [
@@ -23,32 +25,33 @@ export const model = {
   },
 
   /**
-   * FUNCTIONS THAT ARE RESPONSIBLE FOR THE `MODEL` OPERATION
+   * FUNCTIONS THAT ARE RESPONSIBLE FOR THE `STORE` OPERATION
   */
 
   /**
    * @param  {number} counter
    * @param  {number} attempts
    */
-  applicationIsReady : function applicationIsReady(counter,attempts) {
-    
-    let modulesToLoad = model.requiredModules.length || 0;
+  checkAppicationStart : function checkAppicationStart(counter,attempts) {
+
+    let modulesToLoad = this.requiredModules.length || 0;
     
     /** IF NO MODULE IS REQUIRED ... TERMINATE THIS FUNCTION*/
     if(!modulesToLoad) return;
 
     setTimeout(() => { 
+
       if(counter > attempts) {
-        console.warn("A module hasn`t been loaded!");
+        console.warn("A module hasn`t been loaded! Application may not work correctly");
         return;
       }
       // console.log("Checking!!!!!");
-      if(model.requiredModules.length === model.successfulModules.length) {
+      if(this.requiredModules.length === this.successfulModules.length) {
         console.log("all set");
         return true;
       }        
       // CALL THE FUNCTION ANOTHER TIME
-      applicationIsReady(++counter,attempts);
+      checkAppicationStart.call(this,++counter,attempts);
     }, 1000);     
   },
   
@@ -63,24 +66,26 @@ export const model = {
       return false;
     }
 
-    let url = "https://my-json-server.typicode.com/mba2/fake-data/uses",
+    let url = "https://my-json-server.typicode.com/mba2/code-ditor/users",
       loadingModule = "userPersonalInfo";
 
     AppHelpers.customFetch(url,loadingModule)
       .then( (data) => {
-        model.userInfo = data.filter( (user) => {
-          if(user['user'].id == id) {
-            model.successfulModules.push(loadingModule);
-            model.user.name = user['user'].name;
-            return user.user;
-          } 
+        this.user = data.filter( (user) => {
+          if(user.id == id) {
+            return user;
+          }
         });
+        /** ONLY IF A REQUIRED MODULE IS PASSED... WE PUSH IT INTO THE STORE */
+        if(loadingModule) {
+          this.successfulModules.push(loadingModule);
+        }
       })
       .catch( (data) => { console.log(data);})
   },
 
   init : function() {
-    this.userPersonalInfo(2445);
-    this.applicationIsReady(1,3);
+    this.userPersonalInfo('001');
+    this.checkAppicationStart(1,3);
   }
 };

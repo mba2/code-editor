@@ -8,27 +8,27 @@ export const v_user_area = {
 		this.userName = document.querySelector(".user-area__name");
 	},
 
-  setUserName : function() {
-    this.userName.innerText = controller.getUserName();
-  },
 
-  changeUserName : function() {
-    const SELF = this;
-    let t = document.querySelector("#test");
-      t.addEventListener("click", function() {
-        controller.changeUserName("Heisenberg");
-        SELF.render();
-      })
-  },
-  
   render : function() {
     console.log("Rendering user area!");
-    this.setUserName();
+
   },
 
+  /**
+    * ALL HANDLERS EVENTS FOR THIS VIEW IS PUT INSIDE THIS ARRAY. 
+    * THIS HANDLERS WILL BE SET ON THE init() METHOD
+  */ 
+  handlers : [
+    // function(SELF) {
+    //   SELF.dom_loadBtn.addEventListener('click', function() {
+    //     controller.userPlays.call(SELF,'001');
+    //   });
+    // }
+  ],
+
   init : function() {
-    this.cacheElements();
-    this.changeUserName();
-    this.render();
+    // this.cacheElements();
+    // this.changeUserName();
+    // this.render();
   }
 };

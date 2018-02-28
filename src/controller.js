@@ -1,6 +1,7 @@
 'use strict';
 
-import { model } from "./model";
+import { store } from "./store";
+
 // CONTROLLER
 export const controller = {
     views : [],
@@ -23,10 +24,21 @@ export const controller = {
     init : function() {
 			this.views.forEach( 
 				(view) => view.init()
-			);        
+			);     
+
+			// DEBUG FUNCTION
+			this.debug.storeStatus.call(this);   
     },
 
     debug : {
+			storeStatus : function() {
+				document.body.addEventListener('keyup', (e) => {
+					if(e.keyCode === 27) {
+						console.log('controller: ', this);
+						console.log('store:', store);
+					}
+				})
+			},
 			showCurrentViews : function() {
 				console.log(`Views with for-of:`);
 				for (let view of this.views) {
@@ -48,6 +60,5 @@ export const controller = {
 				console.log(states);
 			}
     }
-    
 };
 
