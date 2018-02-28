@@ -8,20 +8,17 @@
 */
 import {store} from "./store";
 store.init();
-// console.log("store:", store);
 
 /**
  * IMPORT THE CONTROLLER
 */
 import {controller} from "./controller";
-console.log("controller:",controller);
-
 
 /**
  * IMPORT ALL VIEWS YOU WANNA WORK WITH ...
 */
 import { v_user_area } from './blocks/user-area/user-area';
-// import { v_editor } from './blocks/editor/editor';
+import { v_editor } from './blocks/editor/editor';
 // import { v_auth_box } from './blocks/auth_box/';
 	
 
@@ -31,7 +28,7 @@ import { v_user_area } from './blocks/user-area/user-area';
 */
 controller.addViews(
 	v_user_area,
-	// v_editor
+	v_editor
 );
 
 /**

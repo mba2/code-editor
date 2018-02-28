@@ -9,18 +9,6 @@ export const controller = {
 			this.views = viewList.map(function(v) { return v; });
     },
 
-    getUserName : function() {
-			return model.user.name;
-    },
-
-    changeUserName : function (test) {
-				// this.debug.showCurrentViews.apply(this);
-				// this.debug.firstView.apply(this);
-				// this.debug.userInfo.apply(this);
-				
-			return model.user.name = test;
-    },
-
     init : function() {
 			this.views.forEach( 
 				(view) => view.init()
@@ -28,7 +16,8 @@ export const controller = {
 
 			// DEBUG FUNCTION
 			this.debug.storeStatus.call(this);   
-    },
+		},
+		
 
     debug : {
 			storeStatus : function() {

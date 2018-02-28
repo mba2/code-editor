@@ -9,7 +9,7 @@ export const store = {
    * SO THE APPLICATION CAN WORK
   */
   "requiredModules" : [
-    "userPersonalInfo"
+    // "userPersonalInfo"
     // "userPlayInfo"
   ],
   /** STATE INFO */
@@ -17,11 +17,16 @@ export const store = {
   "failedModules" : [],
 
   "user" : {
-    "name" :  null
+    "id" :  null,
+    "name" :  null,
+    "photo" :  null,
+    "pens" :  null,
+    "lastPenId" : null
   },
 
   "app" : {
-    
+    "isReady" : true,
+    "userIsLogged" : false
   },
 
   /**
@@ -43,11 +48,12 @@ export const store = {
 
       if(counter > attempts) {
         console.warn("A module hasn`t been loaded! Application may not work correctly");
+        this.app.isReady = false;
         return;
       }
-      // console.log("Checking!!!!!");
+
       if(this.requiredModules.length === this.successfulModules.length) {
-        console.log("all set");
+        // console.log("all set");
         return true;
       }        
       // CALL THE FUNCTION ANOTHER TIME
@@ -58,7 +64,7 @@ export const store = {
   /**
    ** FUNCTIONS THAT MUST BE INVOKED SO THE APPLICATION CAN BE CONSIDERED
    ** READY TO USE 
-   *  @param  {} id
+   *  @param  {string} id
    */
   userPersonalInfo : function(id) {
     if(!id) {
@@ -66,7 +72,7 @@ export const store = {
       return false;
     }
 
-    let url = "https://my-json-server.typicode.com/mba2/code-ditor/users",
+    let url = "https://my-json-server.typicode.com/mba2/code-editor/users",
       loadingModule = "userPersonalInfo";
 
     AppHelpers.customFetch(url,loadingModule)
@@ -82,6 +88,16 @@ export const store = {
         }
       })
       .catch( (data) => { console.log(data);})
+  },
+
+  savePen : function(pen) {
+    if(!this.app.userIsLogged) {
+      console.log("Can`t save cause' you`re no logged!");
+      return false;
+    }
+
+    // TO DO: WHEN MAKE A POST/PUT/PACTH REQUEST TO THE SERVER....
+    this.user.pens.push(pen);
   },
 
   init : function() {

@@ -1,10 +1,12 @@
 import "./editor.scss";
+import { store } from "../../store";
 
 export const v_editor = {
   currentTheme : "solarized_light",
 
   cacheElements : function() {
     this.boxes = [].slice.call(document.querySelectorAll(".editor__box"));
+    this.dom_saveBtn = document.querySelector("#save");
 	},
   
   getBoxesMeasures : function() {
@@ -31,61 +33,33 @@ export const v_editor = {
     });
   },
 
-  start : function () {
-    // document.querySelector("#save").addEventListener("click", () => {
-    //   // console.log("save");
-      
-    //   editor.setValue(localStorage['last_pen']);
-    //   // console.log(start.lastValue);
-    // })
-    // document.querySelector("#edit").addEventListener("click", () => {
-    //   let test = editor.getValue();
-    //   localStorage['last_pen'] = test;
-    //   // this.lastValue = test;
-    //   // start.lastValue = test;
-    //   // console.log("",);
-    // })
+  render : function() {
+    console.log("Rendering editor area!");
   },
+
+  /**
+    * ALL HANDLERS EVENTS FOR THIS VIEW IS PUT INSIDE THIS ARRAY. 
+    * THIS HANDLERS WILL BE SET ON THE init() METHOD
+  */ 
+  handlers : [
+    function() {
+      this.dom_saveBtn.addEventListener('click', function() {
+        store.savePen({
+          "id" : store.user.lastPenId++,
+          "name" : "New Pen",
+          "type" : "sass",
+          "content" : "$variable: value;"
+        });
+      });
+    }
+  ],
 
   init : function() {
     this.cacheElements();
-    // this.createBoxes();
+    // this.changeUserName();
+    // this.render();
 
-    this.start();
-
-    document.querySelector("#measures").addEventListener("click", () => {
-      this.getBoxesMeasures();
-    })
-
-
-    /*
-    *
-        QUICK DRAFT FOR VANILHA DRAG !!!
-        let body = document.querySelector("body");
-
-        function mouseMove(e) {
-
-          console.log(e);
-        }
-
-        function mouseUp() {
-
-          console.log("body");
-          body.removeEventListener("mousemove", mouseMove);
-          body.removeEventListener("mouseup", mouseUp);
-        }
-        
-
-        document.querySelector(".divider").addEventListener("mousedown", (e) => {
-          
-          body.addEventListener("mousemove", mouseMove);
-          body.addEventListener("mouseup", mouseUp);
-        });
-     *
-     */
-    
-    
-
+    this.handlers.forEach((handler) => handler.call(this));
   }
 }
 
