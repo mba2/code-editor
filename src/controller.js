@@ -36,7 +36,7 @@ export const controller = {
 		AppHelpers.customFetch(url,loadingModule)
 			.then( (data) => {
 					data.filter( (user) => {
-						if(user.id == id) {
+						if(user.id === id) {
 							/** INFORM THE APPLICATION THAT A SPECIFIC CHUNCK OF DATA WAS SUCCESSFUL LOADED  */ 
 							model.successfulModules.push(loadingModule);
 							/** STORE THE USER'S INFO RETURNED FROM THE SERVER   */ 
@@ -49,6 +49,20 @@ export const controller = {
 					this.setUserInfo(model.user);				
 			})
 			.catch( (data) => { console.log(data);})
+	},
+
+	/*
+	*   @param  {string} id
+  */
+	userPlays : function(id) {
+		AppHelpers.customFetch('https://my-json-server.typicode.com/mba2/code-editor/users',null)
+			.then( data => {
+				let plays = null;
+				data.forEach((user) => {
+					if(user.id === id) plays = user.pens;
+				});
+				this.setUserPlays(plays);
+			})
 	},
 
 	

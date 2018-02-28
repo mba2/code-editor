@@ -24,7 +24,7 @@ import {controller} from "./controller";
  * IMPORT ALL VIEWS YOU WANNA WORK...
 */
 import { v_user_area } from './blocks/user-area/v_user-area';
-// import { ... } from '...';
+import { v_plays } from './blocks/plays/v_plays';
 // import { ... } from '...';
 
 /**
@@ -32,8 +32,8 @@ import { v_user_area } from './blocks/user-area/v_user-area';
  * THE CONTROLLER WILL INITIALIZE ALL THOSE VIEWS.
 */
 controller.loadViews(
-	v_user_area
-	// ...,
+	v_user_area,
+	v_plays
 	// ...
 );
 
