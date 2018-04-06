@@ -1,15 +1,15 @@
 'use strict';
 
-import { AppHelpers } from "./blocks/app-helpers/app-helpers";
+import { Util } from './Util/Util';
 
 // MODEL
-export const store = {
+export const Store = {
   /** LIST STORE 
    * A LIST CONTAINING ALL PARTS OF DATA THAT MUST BE SET INTO THE STORE
    * SO THE APPLICATION CAN WORK
   */
   "requiredModules" : [
-    // "userPersonalInfo"
+    "userPersonalInfo"
     // "userPlayInfo"
   ],
   /** STATE INFO */
@@ -61,34 +61,6 @@ export const store = {
     }, 1000);     
   },
   
-  /**
-   ** FUNCTIONS THAT MUST BE INVOKED SO THE APPLICATION CAN BE CONSIDERED
-   ** READY TO USE 
-   *  @param  {string} id
-   */
-  userPersonalInfo : function(id) {
-    if(!id) {
-      console.warn("No user id was given to retrieve user personal data");  
-      return false;
-    }
-
-    let url = "https://my-json-server.typicode.com/mba2/code-editor/users",
-      loadingModule = "userPersonalInfo";
-
-    AppHelpers.customFetch(url,loadingModule)
-      .then( (data) => {
-        this.user = data.filter( (user) => {
-          if(user.id == id) {
-            return user;
-          }
-        });
-        /** ONLY IF A REQUIRED MODULE IS PASSED... WE PUSH IT INTO THE STORE */
-        if(loadingModule) {
-          this.successfulModules.push(loadingModule);
-        }
-      })
-      .catch( (data) => { console.log(data);})
-  },
 
   savePen : function(pen) {
     if(!this.app.userIsLogged) {
@@ -101,7 +73,7 @@ export const store = {
   },
 
   init : function() {
-    this.userPersonalInfo('001');
-    this.checkAppicationStart(1,3);
+    // this.userPersonalInfo('001');
+    this.checkAppicationStart(1,5);
   }
 };

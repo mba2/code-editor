@@ -1,16 +1,28 @@
 import { controller } from "../../controller";
+import { Util } from '../../Util/Util';
+import { Store } from '../../store';
 
-import "./user-area.scss";
+import "./user.scss";
 
 
-export const v_user_area = {
+export const User = {
 	cacheElements : function() {
 		this.userName = document.querySelector(".user-area__name");
 	},
 
+    
+  loginRedirect() {
+    const userIsLogged = store.app.userIsLogged;
+
+    if( userIsLogged ) {
+      document.querySelector('.login-comp')
+        .classList.remove('unknow-user');
+        return;
+    }    
+  },
 
   render : function() {
-    console.log("Rendering user area!");
+    console.log("Rendering user!");
 
   },
 
@@ -27,6 +39,7 @@ export const v_user_area = {
   ],
 
   init : function() {
+    
     // this.cacheElements();
     // this.changeUserName();
     // this.render();

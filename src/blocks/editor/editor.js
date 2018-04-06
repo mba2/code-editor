@@ -1,5 +1,5 @@
 import "./editor.scss";
-import { store } from "../../store";
+import { Store } from "../../store";
 
 export const v_editor = {
   currentTheme : "solarized_light",
@@ -45,7 +45,7 @@ export const v_editor = {
     function() {
       this.dom_saveBtn.addEventListener('click', function() {
         store.savePen({
-          "id" : store.user.lastPenId++,
+          "id" : Store.user.lastPenId++,
           "name" : "New Pen",
           "type" : "sass",
           "content" : "$variable: value;"

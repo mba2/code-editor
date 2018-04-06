@@ -6,8 +6,8 @@
 /**
  * IMPORT AND INITIALIZE THE MODEL
 */
-import {store} from "./store";
-store.init();
+import {Store} from "./store";
+Store.init();
 
 /**
  * IMPORT THE CONTROLLER
@@ -17,7 +17,8 @@ import {controller} from "./controller";
 /**
  * IMPORT ALL VIEWS YOU WANNA WORK WITH ...
 */
-import { v_user_area } from './blocks/user-area/user-area';
+import { Login } from './blocks/login/Login';
+import { User } from './blocks/user/User';
 import { v_editor } from './blocks/editor/editor';
 // import { v_auth_box } from './blocks/auth_box/';
 	
@@ -27,7 +28,8 @@ import { v_editor } from './blocks/editor/editor';
  * THE CONTROLLER WILL INITIALIZE ALL THOSE VIEWS.
 */
 controller.addViews(
-	v_user_area,
+	User,
+	Login,
 	v_editor
 );
 

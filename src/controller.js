@@ -1,6 +1,7 @@
 'use strict';
 
-import { store } from "./store";
+import { Store } from "./store";
+import { Util } from "./Util/Util";
 
 // CONTROLLER
 export const controller = {
@@ -15,6 +16,8 @@ export const controller = {
 			);     
 
 			// DEBUG FUNCTION
+			Util.userAuthentication('001');   
+			// DEBUG FUNCTION
 			this.debug.storeStatus.call(this);   
 		},
 		
@@ -24,7 +27,7 @@ export const controller = {
 				document.body.addEventListener('keyup', (e) => {
 					if(e.keyCode === 27) {
 						console.log('controller: ', this);
-						console.log('store:', store);
+						console.log('store:', Store);
 					}
 				})
 			},
