@@ -5,6 +5,8 @@ import { Store } from '../../store';
 import { Util } from "../../Util/Util";
 
 export const Header = {
+  selector : 'app-header',
+
   getProps : function(){
     return (function() {
       return {
@@ -17,12 +19,12 @@ export const Header = {
   mountHTML : function() {
     const template = this.setProps();
 
-    const nodes = [...document.querySelectorAll('app-header')];
+    const nodes = [...document.querySelectorAll(this.selector)];
     nodes.forEach( node => node.innerHTML = template );
   },
 
   setProps : function() {
-    const regex = /{{\s+(.*)\s+}}/gmi;
+    const regex = /{{\s+(.*?)\s+}}/gmi;
     const matches = html.match(regex);
     const props = this.getProps();
 
