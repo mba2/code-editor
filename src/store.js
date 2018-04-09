@@ -64,10 +64,9 @@ export const Store = {
 
   savePen : function(pen) {
     if(!this.app.userIsLogged) {
-      console.log("Can`t save cause' you`re no logged!");
+      console.log("Can`t save cause' you`re not logged!");
       return false;
     }
-
     // TO DO: WHEN MAKE A POST/PUT/PACTH REQUEST TO THE SERVER....
     this.user.pens.push(pen);
   },

@@ -19,8 +19,8 @@ import {controller} from "./controller";
 */
 import { Login } from './blocks/login/Login';
 import { User } from './blocks/user/User';
+import { Header } from './blocks/header/header';
 import { v_editor } from './blocks/editor/editor';
-// import { v_auth_box } from './blocks/auth_box/';
 	
 
 /**
@@ -30,6 +30,7 @@ import { v_editor } from './blocks/editor/editor';
 controller.addViews(
 	User,
 	Login,
+	Header,
 	v_editor
 );
 

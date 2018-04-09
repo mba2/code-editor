@@ -30,8 +30,7 @@ export const Util = {
     )
   },
 
-
-    /**
+  /**
    ** FUNCTIONS THAT MUST BE INVOKED SO THE APPLICATION CAN BE CONSIDERED
    ** READY TO USE 
    *  @param  {string} id
@@ -45,24 +44,30 @@ export const Util = {
     let url = "https://my-json-server.typicode.com/mba2/code-editor/users",
       loadingModule = "userPersonalInfo";
 
-      Util.customFetch(url,loadingModule)
-        .then( (data) => {
-          setTimeout(() => {
-            Store.app.userIsLogged = false;
+      return (
+          Util.customFetch(url,loadingModule)
+          .then( (data) => {
             
-            Store.user = data.filter( (user) => {
-              if(user.id == id) {
-                return user;
+              Store.app.userIsLogged = false;
+              
+              Store.user = data.filter( (user) => {
+                if(user.id == id) {
+                  return user;
+                }
+              });
+              /** ONLY IF A REQUIRED MODULE IS PASSED... WE PUSH IT INTO THE STORE */
+              if(loadingModule) {
+                Store.successfulModules.push(loadingModule);
               }
-            });
-            /** ONLY IF A REQUIRED MODULE IS PASSED... WE PUSH IT INTO THE STORE */
-            if(loadingModule) {
-              Store.successfulModules.push(loadingModule);
-            }
-            document.querySelector('.login-comp')
-              .classList.remove('unknow-user');
-          }, 4000);
-      })
-      .catch( (data) => { console.log(data);})
+
+              try {
+                document.querySelector('.login-comp')
+                  .classList.remove('unknow-user');
+                  // console.log(Store);
+
+              }catch(e) { console.warn(e) }
+          })
+          .catch( (data) => { console.log(data);})
+      );
   },
 }

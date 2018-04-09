@@ -59,7 +59,7 @@ export const v_editor = {
     // this.changeUserName();
     // this.render();
 
-    this.handlers.forEach((handler) => handler.call(this));
+    // this.handlers.forEach((handler) => handler.call(this));
   }
 }
 

@@ -16,7 +16,7 @@ export const controller = {
 			);     
 
 			// DEBUG FUNCTION
-			Util.userAuthentication('001');   
+			// Util.userAuthentication('001');   
 			// DEBUG FUNCTION
 			this.debug.storeStatus.call(this);   
 		},
