@@ -7,6 +7,8 @@ import { Util } from "../../Util/Util";
 export const Header = {
   selector : 'app-header',
 
+  
+
   getProps : function(){
     return (function() {      
       if (!Store.user) return false;
@@ -58,15 +60,19 @@ export const Header = {
   ],
 
   init : function() {
-    const self = this;
+    // RUN THE COMPONENT'S INITIAL RENDERIZATION 
+    this.render();
+    // RUN ALL COMPONENT`S HANDLERS
+    this.handlers.forEach( handler => handler());
 
-    Util.userAuthentication('001')
-        .then( (e) => {
-          // RUN THE COMPONENT'S INITIAL RENDERIZATION 
-          self.render();
-          // RUN ALL COMPONENT`S HANDLERS
-          this.handlers.forEach( handler => handler());
-        });
+
+    // Util.userAuthentication('001')
+    //     .then( (e) => {
+    //       // RUN THE COMPONENT'S INITIAL RENDERIZATION 
+    //       self.render();
+    //       // RUN ALL COMPONENT`S HANDLERS
+    //       this.handlers.forEach( handler => handler());
+    //     });
     
     
         // this.cacheElements();

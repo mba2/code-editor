@@ -6,6 +6,8 @@ import "./user.scss";
 
 
 export const User = {
+  selector : 'user',
+
 	cacheElements : function() {
 		this.userName = document.querySelector(".user-area__name");
 	},
