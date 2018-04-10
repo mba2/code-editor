@@ -48,26 +48,30 @@ export const Util = {
           Util.customFetch(url,loadingModule)
           .then( (data) => {
             
-              Store.app.userIsLogged = false;
-              
-              Store.user = data.filter( (user) => {
-                if(user.id == id) {
-                  return user;
-                }
-              });
-              /** ONLY IF A REQUIRED MODULE IS PASSED... WE PUSH IT INTO THE STORE */
-              if(loadingModule) {
-                Store.successfulModules.push(loadingModule);
+            Store.user = data.reduce( (acc,user, i) => {
+              if(user.id === id) {
+                acc['id'] = user['id'],
+                acc['lastPenId'] = user['lastPenId'],
+                acc['name'] = user['name'],
+                acc['pens'] = user['pens'],
+                acc['photo'] = user['photo']
               }
+              return acc;
+            },{});
 
-              try {
-                document.querySelector('.login-comp')
-                  .classList.remove('unknow-user');
-                  // console.log(Store);
+            /** ONLY IF A REQUIRED MODULE IS PASSED... WE PUSH IT INTO THE STORE */
+            if(loadingModule) {
+              Store.successfulModules.push(loadingModule);
+            }
 
-              }catch(e) { console.warn(e) }
-          })
-          .catch( (data) => { console.log(data);})
+            try {
+              document.querySelector('.login-comp')
+                .classList.remove('unknow-user');
+                // console.log(Store);
+
+            }catch(e) { console.warn(e) }
+        })
+        .catch( (data) => { console.log(data);})
       );
   },
 }

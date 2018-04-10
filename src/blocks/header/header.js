@@ -8,10 +8,12 @@ export const Header = {
   selector : 'app-header',
 
   getProps : function(){
-    return (function() {
+    return (function() {      
+      if (!Store.user) return false;
+      
       return {
-        userName  : Store.user[0].name,
-        userPhoto  : Store.user[0].photo
+        userName  : Store.user.name,
+        userPhoto  : Store.user.photo
       }
     })();
   },
@@ -39,25 +41,35 @@ export const Header = {
     return template;
   },
 
-
   render : function() {
     console.log('rendering header');
     this.mountHTML();
-    // this.setProps();
   },
 
   // ALL HANDLERS EVENTS FOR THIS VIEW IS PUT INSIDE THIS ARRAY. 
   // THIS HANDLERS WILL BE SET ON THE init() METHOD
-  handlers : [],
+  handlers : [
+    function onClickConfiguration() {
+      document.querySelector('.config')
+        .addEventListener('click', () => {
+          console.log(Store.user);
+        })
+    }
+  ],
 
   init : function() {
     const self = this;
-    Util.userAuthentication('001').then( (e) => {
-      console.log(Store);
-    //   console.log(self);
-      self.render();
-    });
-    // this.cacheElements();
+
+    Util.userAuthentication('001')
+        .then( (e) => {
+          // RUN THE COMPONENT'S INITIAL RENDERIZATION 
+          self.render();
+          // RUN ALL COMPONENT`S HANDLERS
+          this.handlers.forEach( handler => handler());
+        });
+    
+    
+        // this.cacheElements();
     // this.changeUserName();
   }
 }

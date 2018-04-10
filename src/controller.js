@@ -10,18 +10,6 @@ export const controller = {
 			this.views = viewList.map(function(v) { return v; });
     },
 
-    init : function() {
-			this.views.forEach( 
-				(view) => view.init()
-			);     
-
-			// DEBUG FUNCTION
-			// Util.userAuthentication('001');   
-			// DEBUG FUNCTION
-			this.debug.storeStatus.call(this);   
-		},
-		
-
     debug : {
 			storeStatus : function() {
 				document.body.addEventListener('keyup', (e) => {
@@ -51,6 +39,15 @@ export const controller = {
 				console.log(user);
 				console.log(states);
 			}
-    }
+		},
+
+		init : function() {
+			this.views.forEach( 
+				(view) => view.init()
+			);     
+
+			// DEBUG FUNCTION
+			this.debug.storeStatus.call(this);   
+		},
 };
 
