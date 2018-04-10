@@ -4,10 +4,14 @@ import { Store } from "./store";
 import { Util } from "./Util/Util";
 
 // CONTROLLER
-export const controller = {
+export const Controller = {
     views : [],
     addViews : function(...viewList) {
-			this.views = viewList.map(function(v) { return v; });
+			this.views = viewList.reduce( (acc,view,i) => { 
+				if (view.selector)
+					acc[view.selector] = view;
+				return acc; 
+			}, {});
     },
 
     debug : {
@@ -19,6 +23,7 @@ export const controller = {
 					}
 				})
 			},
+
 			showCurrentViews : function() {
 				console.log(`Views with for-of:`);
 				for (let view of this.views) {
@@ -29,11 +34,13 @@ export const controller = {
 					console.log(`view ${i}: `, this.views[i]);
 				}
 			},
+
 			firstView : function() {
 				let [first,...rest] = this.views;
 				console.log(`The First view: `,first);
 				console.log(`The rest of the views: `,rest);
 			},
+
 			userInfo : function() {
 				let { user, states } = model;
 				console.log(user);
@@ -42,10 +49,22 @@ export const controller = {
 		},
 
 		init : function() {
-			this.views.forEach( 
-				(view) => view.init()
-			);     
+			const loginComponent = this.views['login'];
+			const headerComponent = this.views['app-header'];
 
+			loginComponent['init'].call(loginComponent);
+
+			Util.userAuthentication('001')
+				.then( () => {
+					try {
+						// this.views.forEach( 
+						// 	(view) => view.init()
+						// );     
+						loginComponent.hideLoginBox();
+						headerComponent.init.call(headerComponent);
+
+					}catch(e) { console.warn(e) }
+				});
 			// DEBUG FUNCTION
 			this.debug.storeStatus.call(this);   
 		},

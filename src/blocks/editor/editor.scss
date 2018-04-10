@@ -13,15 +13,28 @@
 //   height: 80vh;
 // }
 
-.editor {
+.latest-plays,
+.action-buttons {
+  width: 50%;
+}
 
-  &__wrapper {
+.latest-plays {
+}
+
+.action-buttons {
+}
+
+.editor {
+  display: flex;
+  flex-wrap: wrap;
+
+  &-wrapper {
     display: flex;
     height: 200px;
-    
+    width: 100%;
   }
 
-  &__box {
+  &-box {
     border: 1px solid #e6e6e6;
     width: calc(100% / 3);
   }

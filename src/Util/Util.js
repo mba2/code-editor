@@ -63,13 +63,6 @@ export const Util = {
             if(loadingModule) {
               Store.successfulModules.push(loadingModule);
             }
-
-            try {
-              document.querySelector('.login-comp')
-                .classList.remove('unknow-user');
-                // console.log(Store);
-
-            }catch(e) { console.warn(e) }
         })
         .catch( (data) => { console.log(data);})
       );

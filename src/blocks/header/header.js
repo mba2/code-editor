@@ -2,12 +2,31 @@ import "./header.scss";
 import html from './header.html';
 
 import { Store } from '../../store';
+import { Controller } from '../../controller';
 import { Util } from "../../Util/Util";
+
+import { Editor } from "../editor/editor";
+
 
 export const Header = {
   selector : 'app-header',
 
-  
+  setLatestPlays : function() {
+    let wrapper = document.querySelector('.latest-plays');
+    const latestsPlays = Store.user.pens.filter( (play, i) => i < 3);
+
+    latestsPlays.forEach( (play) => {
+      let li = document.createElement('li');
+      let a = document.createElement('a');
+        
+      a.textContent = play.name;
+      a.classList.add('play-anchor');
+      a.dataset.id = play.id;
+      
+      li.appendChild(a);
+      wrapper.appendChild(li);
+    })
+  },
 
   getProps : function(){
     return (function() {      
@@ -46,6 +65,7 @@ export const Header = {
   render : function() {
     console.log('rendering header');
     this.mountHTML();
+    this.setLatestPlays();
   },
 
   // ALL HANDLERS EVENTS FOR THIS VIEW IS PUT INSIDE THIS ARRAY. 
@@ -55,6 +75,13 @@ export const Header = {
       document.querySelector('.config')
         .addEventListener('click', () => {
           console.log(Store.user);
+        })
+    },
+    function onClickNewPlay() {
+      document.querySelector('.new-play-btn')
+        .addEventListener('click', () => {
+          Editor.insertEditor();
+          Editor.init();
         })
     }
   ],

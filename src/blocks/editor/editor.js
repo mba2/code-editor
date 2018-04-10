@@ -73,22 +73,43 @@ import { Util } from "../../Util/Util";
 export const Editor = {
   selector : 'editor',
 
-  setLatestPlays : function() {
-    let wrapper = document.querySelector('.latest-plays');
-    const latestsPlays = Store.user.pens.filter( (play, i) => i < 3);
+  currentTheme : "solarized_light",
 
-    latestsPlays.forEach( (play) => {
-      let li = document.createElement('li');
-      let a = document.createElement('a');
-        
-      a.textContent = play.name;
-      a.classList.add('play-anchor');
-      a.dataset.id = play.id;
-      
-      li.appendChild(a);
-      wrapper.appendChild(li);
-    })
+  insertEditor : function() {
+    System.import('./editor.html')
+      .then( 
+        (html) => {
+          document.querySelector(this.selector)
+            .innerHTML = html;
+        },
+        (error) => console.warn(error)
+      );
   },
+
+  createBoxes : function() {
+    const self = this;
+
+    var editor = ace.edit("editor--html");
+    editor.setTheme("ace/theme/monokai");
+    editor.session.setMode("ace/mode/html");
+
+    this.boxes.forEach( function(box) {
+      // let boxType = box.getAttribute('id'),
+      //   editor = null;
+      //   try{
+      //     boxType = boxType.split('--')[1];
+      //     editor = ace.edit("editor--" + boxType);
+      //     editor.setTheme("ace/theme/" + self.currentTheme);
+      //     editor.session.setMode("ace/mode/" + boxType);
+      //   } catch(e) { console.warn(e) }; 
+    });
+  },
+
+
+  cacheElements : function() {
+    this.boxes = [...document.querySelectorAll(".editor-box")];
+    this.dom_saveBtn = document.querySelector("#save");
+	}, 
 
   getProps : function(){
     return (function() {      
@@ -127,9 +148,8 @@ export const Editor = {
   },
 
   render : function() {
-    console.log('rendering editor');
+    console.log('rendering editor',);
     this.mountHTML();
-    this.setLatestPlays();
   },
 
   // ALL HANDLERS EVENTS FOR THIS VIEW IS PUT INSIDE THIS ARRAY. 
@@ -144,8 +164,11 @@ export const Editor = {
   ],
 
   init : function() {
+    this.cacheElements();
     // RUN THE COMPONENT'S INITIAL RENDERIZATION 
     this.render();
+
+    this.createBoxes();
     // RUN ALL COMPONENT`S HANDLERS
     this.handlers.forEach( handler => handler());
 
