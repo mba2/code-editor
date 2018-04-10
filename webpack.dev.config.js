@@ -1,73 +1,62 @@
-const webpack = require("webpack");
-const path = require("path");
-const HTML = require("html-webpack-plugin");
+const webpack = require('webpack');
+const merge = require('webpack-merge');
+const commom = require('./webpack.common.config');
+const path = require('path');
+const HTML = require('html-webpack-plugin');
 
-const config = {
-    entry : {
-        app : "./src/index.js"
-    },
-    output : {
-        filename : "app.js",
-        path : path.resolve(__dirname, 'build'),
-        publicPath : '/'
-    },
 
-    devtool : 'inline-source-map',
-    devServer : {
-        // hot : true,
-        // stats : "errors-only",
-        // open : true
-    },
+const config = merge(commom, {
+	output : {
+		filename : "[name].js",
+		chunkFilename: '[name].chunk.js',
+		path : path.resolve(__dirname, 'build'),
+		publicPath : '/'
+	},
 
-    module : {
-        rules : [
-            {
-                test : /\.s?css$/,
-                use: [
-                    'style-loader',
-                    { loader: 'css-loader', options: { importLoaders: 1 } },
-                    'postcss-loader',
-                    'sass-loader'
-                ]
-            },
-            {
-                test : /\.js$/,
-                use : ['babel-loader'],
-                exclude : /node_modules/
-            },
-            //FONT PROCESS
-            {
-                test : /\.(woff|woff2|svg|eot)$/,
-                use : 'file-loader'
-            },
-            // IMAGE PROCESS
-            {
-				test : /\.(jpeg|jpe?g|svg|png|gif)$/,
-				use : [
-					{
-						loader:'url-loader',
-						options : { limit : 40000 }
-					},
-					'image-webpack-loader'
-				]
-            },
-            // HTML PROCESS
+	devtool : 'inline-source-map',
+
+	devServer : {
+		// compress : true,
+		// hot : true,
+		stats : "errors-only",
+		// open : true
+	},
+
+	module : {
+		rules : [
+			//STYLE PROCESS
 			{
-				test: /\.html$/,
-				use: ['html-loader']
-            }
-        ]
-    },
+				test : /\.s?css$/,
+				use: [
+					'style-loader',
+					{ loader: 'css-loader', options: { importLoaders: 1 } },
+					'postcss-loader',
+					'sass-loader'
+				]
+			}
+		]
+	},
 
-    plugins : [
-        new HTML({
-            template : "./src/index.html",
-            // hash : true,
-            // minify : { collapseWhitespace : true}
-        }),
-        // new webpack.NamedModulesPlugin(),
-        // new webpack.HotModuleReplacementPlugin()
-    ]
-}
+	plugins : [
+		/** SET THIS ENVIRONMENT AS A TYPE OF `DEVELOPMENT` SO THIRD PARTY LIBRARIES ACT ACCORDINGLY */
+		new webpack.DefinePlugin({
+			'process.env.NODE_ENV': JSON.stringify('development')
+		}),
+		/** GENERATES HTML FILES */
+		new HTML({
+				template : "./src/index.html",
+		}),
+		/**  THIS PLUGIN JOIN PLUGINS THAT ARE USED IN MORE THAN ONE MODULE */
+		new webpack.optimize.CommonsChunkPlugin({
+				names : ['vendor']
+		})        
+		/**
+		 *  UNCOMMENT THIS TWO PLUGINS + ADD {} INTO 'hot : true,' INTO devServer PROPERTY
+		 *  TO WORK WITH HOT MODULE REPLACEMENT
+		*/ 
+		// new webpack.NamedModulesPlugin(),
+		// new webpack.HotModuleReplacementPlugin()
+	]
+});
 
 module.exports = config;

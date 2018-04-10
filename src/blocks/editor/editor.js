@@ -89,20 +89,26 @@ export const Editor = {
   createBoxes : function() {
     const self = this;
 
-    var editor = ace.edit("editor--html");
-    editor.setTheme("ace/theme/monokai");
-    editor.session.setMode("ace/mode/html");
-
-    this.boxes.forEach( function(box) {
-      // let boxType = box.getAttribute('id'),
-      //   editor = null;
-      //   try{
-      //     boxType = boxType.split('--')[1];
-      //     editor = ace.edit("editor--" + boxType);
-      //     editor.setTheme("ace/theme/" + self.currentTheme);
-      //     editor.session.setMode("ace/mode/" + boxType);
-      //   } catch(e) { console.warn(e) }; 
-    });
+    new Promise(function(resolve, reject) {
+      let script = document.createElement('script');
+      script.src = 'https://cdnjs.cloudflare.com/ajax/libs/ace/1.3.1/ace.js'; 
+      document.body.appendChild(script);
+        
+      setTimeout(() => resolve(1), 100);
+    })
+    .then( () => {
+        self.cacheElements();
+        self.boxes.forEach( function(box) {
+          let boxType = box.getAttribute('id'),
+              editor = null;
+            try{
+              boxType = boxType.split('--')[1];
+              editor = ace.edit("editor--" + boxType);
+              editor.setTheme("ace/theme/" + self.currentTheme);
+              editor.session.setMode("ace/mode/" + boxType);
+            } catch(e) { console.warn(e) }; 
+        });
+    })
   },
 
 

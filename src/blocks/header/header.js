@@ -80,8 +80,14 @@ export const Header = {
     function onClickNewPlay() {
       document.querySelector('.new-play-btn')
         .addEventListener('click', () => {
-          Editor.insertEditor();
-          Editor.init();
+          if( !Store.app.hasActivePlay) {
+            Editor.insertEditor();
+            Editor.init();
+            Store.app.hasActivePlay = true;
+          }
+          else {
+            console.warn('This active play needs to be discarted or saved');
+          }
         })
     }
   ],

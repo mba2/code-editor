@@ -26,7 +26,8 @@ export const Store = {
 
   "app" : {
     "isReady" : true,
-    "userIsLogged" : false
+    "userIsLogged" : false,
+    "hasActivePlay" : false
   },
 
   /**
