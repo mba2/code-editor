@@ -1,21 +1,21 @@
 import { Store } from "../store";
 
-export const Util = {
+export class Util {
   /**
    * @param  {string} moduleName
    * @param  {string} status
   */
-  unexpectedRequest : function(moduleName,status) {
+  unexpectedRequest(moduleName,status) {
     store.failedModules.push(moduleName);
     console.warn("Request failed: " + status);
     return false;
-  },
+  };
   
   /**
    * @param  {string} url
    * @param  {string} loadingModule
    */
-  customFetch : function(url, loadingModule) {
+  customFetch(url, loadingModule) {
     return (
       fetch(url)
       .then(response => {
@@ -28,14 +28,14 @@ export const Util = {
         return response.json();
       })
     )
-  },
+  };
 
   /**
    ** FUNCTIONS THAT MUST BE INVOKED SO THE APPLICATION CAN BE CONSIDERED
    ** READY TO USE 
    *  @param  {string} id
    */
-  userAuthentication : function(id) {
+  userAuthentication(id) {
     if(!id) {
       console.warn("No user id was given to retrieve user personal data");  
       return false;
@@ -66,5 +66,5 @@ export const Util = {
         })
         .catch( (data) => { console.log(data);})
       );
-  },
+  };
 }

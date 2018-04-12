@@ -1,7 +1,7 @@
 import "./login.scss";
 import html from './login.html';
 
-export const Login = {
+export class Login = {
   selector : 'login',
 
   hideLoginBox : function() {
