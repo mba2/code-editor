@@ -6,28 +6,38 @@ import { Store } from "./store";
 // CONTROLLER
 export class Controller {
 
-	constructor() {
-		this.components = [];
-
+	constructor(Store) {
+		this._components = [];
+		this._debug = {
+			"storeStatus" : this.storeStatus()
+		};
+		this._Store = Store;
 	}
 		
 	addComponents(...components) {
-		this.components = viewList.reduce( (acc,component,i) => { 
-			if (component.selector)
-				acc[component.selector] = component;
+		this._components = components.reduce( (acc,component,i) => { 
+			let instance = new component();
+
+			if (!instance.selector) {
+				console.warn('This component doesn`t have a `selector` property:', component);
+				return false;
+			}
+			acc[instance.selector] = instance;
 			return acc; 
 		}, {});
 	};
 
-    // debug  {
-		// 	storeStatus : function() {
-		// 		document.body.addEventListener('keyup', (e) => {
-		// 			if(e.keyCode === 27) {
-		// 				console.log('controller: ', this);
-		// 				console.log('store:', Store);
-		// 			}
-		// 		})
-		// 	},
+  storeStatus() {
+		const self = this;
+		
+		return function() {
+			document.body.addEventListener('keyup', (e) => {
+				if(e.keyCode === 27) {
+					console.log('controller: ', self);
+				}
+			})
+		}
+	};
 
 		// 	showCurrentViews : function() {
 		// 		console.log(`Views with for-of:`);
@@ -54,6 +64,8 @@ export class Controller {
 		// };
 
 		init() {
+			this._debug.storeStatus();
+
 			// const loginComponent = this.views['login'];
 			// const headerComponent = this.views['app-header'];
 

@@ -7,31 +7,33 @@
  * IMPORT AND INITIALIZE THE MODEL
 */
 import {Store} from "./store";
-Store.init();
+const store = new Store();
 
 /**
  * IMPORT THE CONTROLLER
 */
 import {Controller} from "./controller";
+const controller = new Controller(store);
 
 /**
  * IMPORT ALL COMPONENTS YOU WANNA WORK WITH ...
-*/
-
+ */
+import { Login } from "./components/login/Login";
 	
 
 /**
  * INSERT THE IMPORTED COMPONENTS INTO THE CONTROLLER.
- * THE CONTROLLER WILL INITIALIZE ALL THOSE COMPONENTS.
+ * THIS CONTROLLER WILL INITIALIZE ALL THOSE COMPONENTS.
 */
-// Controller.addComponents(
-// 	// User
-// );
+controller.addComponents(
+	Login
+);
 
 /**
  * INITIALIzE THE CONTROLLER
 */
-// Controller.init();
+console.log(controller);
+controller.init();
 
 window.addEventListener('DOMContentLoaded', () => {
 	console.log("I'm the one who knocks!");

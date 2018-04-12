@@ -2,18 +2,36 @@ import { StoreHelper } from './core/StoreHelper';
 
 // MODEL
 export class Store {
-  // /** LIST STORE 
-  //  * A LIST CONTAINING ALL PARTS OF DATA THAT MUST BE SET INTO THE STORE
-  //  * SO THE APPLICATION CAN WORK
-  // */
-  // "requiredModules" : [
-  //   "userPersonalInfo"
-  //   // "userPlayInfo"
-  // ],
-  // /** STATE INFO */
-  // "successfulModules" : [],
-  // "failedModules" : [],
 
+  constructor() {
+    
+    // this._requiredModules = [
+    //   "userPersonalInfo"
+    //   // "userPlayInfo"
+    // ];
+    // /** STATE INFO */
+    // this._successfulModules =  [];
+    // this._failedModules =  [];
+    this._user = {
+      "id" :  null,
+      "name" :  null,
+      "photo" :  null,
+      "pens" :  null,
+      "lastPenId" : null
+    };
+  }
+
+  get user() {
+    return this._user;
+  }
+
+  set user(data) {
+    this._user.id = (data.id) || this.user.id;
+    this._user.name = (data.name) || this.user.name;
+    this._user.photo = (data.photo) || this.user.photo;
+    this._user.pens = (data.pens) || this.user.pens;
+    this._user.lastPenId = (data.lastPenId) || this.user.lastPenId;
+  }
   // "user" : {
   //   "id" :  null,
   //   "name" :  null,
@@ -44,6 +62,6 @@ export class Store {
   // },
 
   static init() {
-    StoreHelper.checkAppicationStart(1,5);
+    // StoreHelper.checkAppicationStart(1,5);
   }
 };
