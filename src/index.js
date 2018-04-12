@@ -32,7 +32,6 @@ controller.addComponents(
 /**
  * INITIALIzE THE CONTROLLER
 */
-console.log(controller);
 controller.init();
 
 window.addEventListener('DOMContentLoaded', () => {

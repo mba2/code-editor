@@ -7,24 +7,33 @@ import { Store } from "./store";
 export class Controller {
 
 	constructor(Store) {
-		this._components = [];
+		this._instances = [];
 		this._debug = {
 			"storeStatus" : this.storeStatus()
 		};
 		this._Store = Store;
 	}
-		
+	
+	/**
+	 * 
+	 * @param {[component]} components 
+	 */
 	addComponents(...components) {
-		this._components = components.reduce( (acc,component,i) => { 
-			let instance = new component();
-
-			if (!instance.selector) {
+		components.forEach( (component) => {
+			if (!component.selector) {
 				console.warn('This component doesn`t have a `selector` property:', component);
 				return false;
 			}
-			acc[instance.selector] = instance;
-			return acc; 
-		}, {});
+
+			const tags = [...document.querySelectorAll(component.selector)];
+				if(!tags.length) {
+					console.warn(`No selector for this component: `, component);
+				} 
+
+			this._instances = tags.map( (tag) => {
+				return new component();
+			});
+		})
 	};
 
   storeStatus() {

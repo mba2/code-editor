@@ -3,7 +3,10 @@ import { Component } from "../../core/Component";
 export class Login extends Component{
   constructor() {
     super(null);
-    this._selector = this.__proto__.constructor.name;
+  }
+
+  static get selector() {
+    return 'Login';
   }
 }
 
