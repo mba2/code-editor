@@ -34,6 +34,7 @@ controller.addComponents(
 */
 controller.init();
 
+
 window.addEventListener('DOMContentLoaded', () => {
 	console.log("I'm the one who knocks!");
 });

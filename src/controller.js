@@ -1,6 +1,7 @@
 'use strict';
 
-import { Store } from "./store";
+import { Component } from "./core/Component";
+
 // import { Util } from "./Util/Util";
 
 // CONTROLLER
@@ -20,6 +21,7 @@ export class Controller {
 	 */
 	addComponents(...components) {
 		components.forEach( (component) => {
+
 			if (!component.selector) {
 				console.warn('This component doesn`t have a `selector` property:', component);
 				return false;
@@ -28,10 +30,12 @@ export class Controller {
 			const tags = [...document.querySelectorAll(component.selector)];
 				if(!tags.length) {
 					console.warn(`No selector for this component: `, component);
+					return false;
 				} 
 
 			this._instances = tags.map( (tag) => {
-				return new component();
+				const instance = new component({},Component); 
+				return instance;	
 			});
 		})
 	};

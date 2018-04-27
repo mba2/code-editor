@@ -1,40 +1,25 @@
 import { Component } from "../../core/Component";
+import { ComponentClass } from "../../core/ComponentClass";
 
-export class Login extends Component{
+
+Component({
+  html: `
+    <div class="login-comp unknown-user">
+      <p>
+        please, log in
+      </p>
+    </div>
+  `,
+  styles : `
+    .login-comp {
+      color: red;
+    }
+  `,
+  selector : 'login',
+});
+
+export class Login extends ComponentClass {
   constructor() {
-    super(null);
-  }
-
-  static get selector() {
-    return 'Login';
+    super();
   }
 }
-
-// import "./login.scss";
-// import html from './login.html';
-
-// export class Login = {
-//   selector : 'login',
-
-//   hideLoginBox : function() {
-//     try {
-//       document.querySelector('.login-comp')
-//       .classList.remove('unknown-user');
-//     }catch(e) { console.warn(e) }
-//   },
-
-//   render : function() {
-//     const nodes = [...document.querySelectorAll('login')];
-    
-//     nodes.forEach( node => {
-//       node.innerHTML = html;
-//     });
-//   },
-
-//   init : function() {
-//     this.render();
-    
-//     // this.cacheElements();
-//     // this.changeUserName();
-//   }
-// }

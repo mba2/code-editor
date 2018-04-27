@@ -1,7 +1,7 @@
 .login-comp {
   display: none;
   
-  &.unknown-user {
+  /* &.unknown-user {
     display: block; 
-  }
+  } */
 }
