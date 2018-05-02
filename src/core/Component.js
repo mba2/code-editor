@@ -1,11 +1,25 @@
 import { ComponentClass } from "./ComponentClass";
+import { Metadata } from "./Metadata";
+
 
 export const Component = (data) => {
   return (function() {
-    ComponentClass['selector'] = data['selector'];
-    ComponentClass['html'] = data['html'];
-    ComponentClass['styles'] = data['styles'];
+    console.log(Metadata.components);
+    Metadata.addComponentInfo(data);
+
+    console.log(Metadata.components);
+    
+    
+    // Metadata.addComponentInfo({
+    //   "name" : data["selector"],
+    //   "props" : {
+    //     "html" : data["html"],
+    //     "styles" : data["styles"],
+    //   }
+    // });
+    
     // Object.keys(object).forEach( prop => {
+      // console.log(ComponentClass.setHTML);
       // ComponentClass[prop] = require(__dirname+'\\components\\login\\login.html');
       // console.log(path.resolve('ae'));
       // console.log(__dirname+'components/login/login.html');

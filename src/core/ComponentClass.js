@@ -1,21 +1,14 @@
 import { Component } from "./Component";
+import { Controller } from "../controller";
 
 export class ComponentClass {
   constructor(){
-    // console.log(__dirname+'components');
-    // console.log(ComponentClass);
     this.selector = ComponentClass.selector;
     this.html = ComponentClass.html;
     this.styles = ComponentClass.styles;
-    // debugger
-    // let test = require('./login.html');
-    // console.log(this.html);
-    // console.log(this.selector);
-
-    this.setHTML();
   }
 
-
+ 
   setProps(htmlPath) {
     const regex = /{{\s+(.*?)\s+}}/gmi;
     const matches = html.match(regex);
@@ -33,9 +26,10 @@ export class ComponentClass {
   }
 
   setStyles() {
-    const el = document.createElement('style');
-      el.innerHTML = this.styles;
-    return el;
+    let styleTag = document.createElement('style');
+        styleTag.innerHTML = this.styles;
+
+    document.body.appendChild(styleTag);
   }
 
   setHTML() {
@@ -53,17 +47,15 @@ export class ComponentClass {
     
     // const template = this.setProps();
 
+    // SELECT THE CUSTOM HTML TAGS
     const nodes = [...document.querySelectorAll(this.selector)];
-
-    console.log(nodes[0]);
-    
-    nodes.forEach( node => {
-      const parent = node.parentNode;
-      const styleTag = this.setStyles();
-
-      node.innerHTML = this.html 
-      parent.insertBefore(styleTag,node);
-    });
+      if(!nodes.length) {
+        console.warn("No selected elements!");
+        return false;
+      }
+    // INSERT THEIR HTML CONTENT
+    nodes.forEach( node => node.innerHTML = this.html);
+    // // INSERT THE STYLES FOR THEM
+    // this.setStyles.call(this,nodes);
   }
-
 }

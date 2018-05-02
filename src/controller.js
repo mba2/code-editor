@@ -1,43 +1,74 @@
 'use strict';
-
 import { Component } from "./core/Component";
+import { Metadata } from "./core/Metadata";
 
 // import { Util } from "./Util/Util";
 
 // CONTROLLER
 export class Controller {
 
-	constructor(Store) {
-		this._instances = [];
-		this._debug = {
-			"storeStatus" : this.storeStatus()
-		};
-		this._Store = Store;
+	constructor(settings) {
+		console.log(settings);
+		// if()
+		// this._instantiatedComponents = {};
+		// this._instances = [];
+		// this._debug = {
+		// 	"storeStatus" : this.storeStatus()
+		// };
+		// this._Store = Store;
 	}
 	
+
 	/**
 	 * 
 	 * @param {[component]} components 
+	 * 
 	 */
-	addComponents(...components) {
-		components.forEach( (component) => {
 
+	addComponents(...components) {
+
+		this._instantiatedComponents = components.reduce( (acc,component,i,arr) => {
+			// CHECKING FOR A SELECTOR PROPERTY
 			if (!component.selector) {
 				console.warn('This component doesn`t have a `selector` property:', component);
-				return false;
-			}
-
-			const tags = [...document.querySelectorAll(component.selector)];
+			}else {
+			// CHECKING FOR SELECTOR IN THE INDEX.HTML	
+				const tags = [...document.querySelectorAll(component.selector)];
 				if(!tags.length) {
 					console.warn(`No selector for this component: `, component);
-					return false;
+					return '';
 				} 
 
-			this._instances = tags.map( (tag) => {
-				const instance = new component({},Component); 
-				return instance;	
-			});
-		})
+				const instance = new component();
+				
+				// SET HTML FOR THE COMPONENT
+				instance.setHTML();
+				// SET STYLES FOR THE COMPONENT IF IT`S THE FIRST OF ITS TYPE
+				if(!this._instantiatedComponents.hasOwnProperty(component.selector)) {
+						instance.setStyles();
+				}
+			}
+
+
+			// WITH ARRAY
+			// const newComponents = components.reduce( (acc,component) => {
+				
+			// 	return acc.concat({
+			// 		name : component.selector,
+			// 		html : component.html,
+			// 		styles : component.styles
+			// 	});
+			// },[]);
+			// this._instantiatedComponents = this._instantiatedComponents.concat(newComponents);
+
+		// WITH OBJECT
+			return Object.assign({
+				[component.selector] : {
+					html : component.html,
+					styles : component.styles
+				}	
+			}, this._instantiatedComponents);
+		},this._instantiatedComponents);
 	};
 
   storeStatus() {
@@ -47,6 +78,7 @@ export class Controller {
 			document.body.addEventListener('keyup', (e) => {
 				if(e.keyCode === 27) {
 					console.log('controller: ', self);
+					console.log('metadata: ', Metadata.components);
 				}
 			})
 		}
@@ -77,7 +109,7 @@ export class Controller {
 		// };
 
 		init() {
-			this._debug.storeStatus();
+			// this._debug.storeStatus();
 
 			// const loginComponent = this.views['login'];
 			// const headerComponent = this.views['app-header'];

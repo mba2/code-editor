@@ -1,4 +1,5 @@
 import { StoreHelper } from './core/StoreHelper';
+import { Metadata } from './core/Metadata';
 
 // MODEL
 export class Store {

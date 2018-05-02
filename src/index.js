@@ -3,31 +3,32 @@
 // 	module.hot.accept();
 // }
 
-/**
- * IMPORT AND INITIALIZE THE MODEL
-*/
-import {Store} from "./store";
-const store = new Store();
+import { Controller } from "./controller";
+import { Metadata } from './core/Metadata';
+import { Store } from './store';
 
-/**
- * IMPORT THE CONTROLLER
-*/
-import {Controller} from "./controller";
-const controller = new Controller(store);
+const controller = new Controller({
+	// metadata : new Metadata(),
+	store : new Store(),
+});
 
 /**
  * IMPORT ALL COMPONENTS YOU WANNA WORK WITH ...
  */
 import { Login } from "./components/login/Login";
+import { StarterComponent } from "./components/starter-component/starter-component";
 	
+
 
 /**
  * INSERT THE IMPORTED COMPONENTS INTO THE CONTROLLER.
  * THIS CONTROLLER WILL INITIALIZE ALL THOSE COMPONENTS.
 */
-controller.addComponents(
-	Login
-);
+// controller.addComponents(
+	// Login,
+	// StarterComponent,
+	// StarterComponent
+// );
 
 /**
  * INITIALIzE THE CONTROLLER
