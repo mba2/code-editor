@@ -1,5 +1,6 @@
 import { StoreHelper } from './core/StoreHelper';
 import { Metadata } from './core/Metadata';
+import { Util } from './core/Util';
 
 // MODEL
 export class Store {
@@ -10,9 +11,10 @@ export class Store {
     //   "userPersonalInfo"
     //   // "userPlayInfo"
     // ];
-    // /** STATE INFO */
-    // this._successfulModules =  [];
-    // this._failedModules =  [];
+
+    /** STATE INFO */
+    this._successfulModules =  [];
+    this._failedModules =  [];
     this._user = {
       "id" :  null,
       "name" :  null,
@@ -20,6 +22,8 @@ export class Store {
       "pens" :  null,
       "lastPenId" : null
     };
+
+    this.AuthenticateUser();
   }
 
   get user() {
@@ -33,13 +37,6 @@ export class Store {
     this._user.pens = (data.pens) || this.user.pens;
     this._user.lastPenId = (data.lastPenId) || this.user.lastPenId;
   }
-  // "user" : {
-  //   "id" :  null,
-  //   "name" :  null,
-  //   "photo" :  null,
-  //   "pens" :  null,
-  //   "lastPenId" : null
-  // },
 
   // "app" : {
   //   "isReady" : true,
@@ -47,11 +44,23 @@ export class Store {
   //   "hasActivePlay" : false
   // },
 
-  // /**
-  //  * FUNCTIONS THAT ARE RESPONSIBLE FOR THE `STORE` OPERATION
-  // */
+  /**
+   * FUNCTIONS THAT ARE RESPONSIBLE FOR THE `STORE` OPERATION
+  */
+  AuthenticateUser() {
+      Util.userAuthentication('001')
+      .then( (e) => {
+        try {
+          console.log(e);
+          this._successfulModules.push('userPersonalInfo');
+          this.user = e;
+          
+          // loginComponent.hideLoginBox();
+          // headerComponent.init.call(headerComponent);
 
-  
+        }catch(e) { console.warn(e) }
+      });
+  }
 
   // savePen : function(pen) {
   //   if(!this.app.userIsLogged) {

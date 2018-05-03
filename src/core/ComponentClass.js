@@ -7,10 +7,35 @@ export class ComponentClass {
     this.html = data.html;
     this.styles = data.styles;
     this.nodes = this.getTags();
+    this.props = {};
 
-    this.setHTML();
+    this.setProps();
     this.setStyles();
+    this.setHTML();
   }
+
+  // get Props() {
+  //   // console.log(this);
+  // }
+
+  setProps() {
+    let template = this.html;
+    const regex = /{{\s+(.*?)\s+}}/gmi;
+    const matches = template.match(regex);
+
+    if(!matches) return false;
+
+    const props = this.props;
+    // console.log
+    // debugger
+    matches.forEach( () => {
+      let result = regex.exec(this.html); 
+        if( result !== null && result.length > 1)
+          template = template.replace(result[0], props[result[1]]);
+    });
+    this.html = template;
+    return template;
+  } 
 
   getTags() {
     // SELECT THE CUSTOM HTML TAGS
@@ -21,23 +46,7 @@ export class ComponentClass {
     }
     return nodes;
   }
- 
-  setProps(htmlPath) {
-    const regex = /{{\s+(.*?)\s+}}/gmi;
-    const matches = html.match(regex);
-    const props = this.getProps();
-
-    let template = html;
-
-    matches.forEach( () => {
-      let result = regex.exec(html); 
-        if( result !== null && result.length > 1)
-          template = template.replace(result[0], props[result[1]]);
-    });
-
-    return template;
-  }
-  
+   
   setStyles() {
     if(this.nodes.length) {
       let styleTag = document.createElement('style');
@@ -49,5 +58,9 @@ export class ComponentClass {
 
   setHTML() {
     this.nodes.forEach( node => node.innerHTML = this.html);
+  }
+
+  render() {
+
   }
 }

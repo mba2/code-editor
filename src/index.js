@@ -15,7 +15,7 @@ const controller = new Controller({
 /**
  * IMPORT ALL COMPONENTS YOU WANNA WORK WITH ...
  */
-import { Login } from "./components/login/Login";
+// import { Login } from "./components/login/Login";
 import { StarterComponent } from "./components/starter-component/starter-component";
 	
 /**
@@ -23,7 +23,7 @@ import { StarterComponent } from "./components/starter-component/starter-compone
  * THIS CONTROLLER WILL INITIALIZE ALL THOSE COMPONENTS.
 */
 controller.addComponents(
-	Login,
+	// Login,
 	StarterComponent
 );
 

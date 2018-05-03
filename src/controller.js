@@ -15,7 +15,7 @@ export class Controller {
 		// this._debug = {
 		// 	"storeStatus" : this.storeStatus()
 		// };
-		// this._Store = Store;
+		this._Store = settings.store;
 	}
 	
 	/**

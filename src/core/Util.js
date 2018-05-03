@@ -5,7 +5,7 @@ export class Util {
    * @param  {string} moduleName
    * @param  {string} status
   */
-  unexpectedRequest(moduleName,status) {
+  static unexpectedRequest(moduleName,status) {
     store.failedModules.push(moduleName);
     console.warn("Request failed: " + status);
     return false;
@@ -15,7 +15,7 @@ export class Util {
    * @param  {string} url
    * @param  {string} loadingModule
    */
-  customFetch(url, loadingModule) {
+  static customFetch(url, loadingModule) {
     return (
       fetch(url)
       .then(response => {
@@ -35,20 +35,19 @@ export class Util {
    ** READY TO USE 
    *  @param  {string} id
    */
-  userAuthentication(id) {
+  static userAuthentication(id) {
     if(!id) {
       console.warn("No user id was given to retrieve user personal data");  
       return false;
     }
 
-    let url = "https://my-json-server.typicode.com/mba2/code-editor/users",
-      loadingModule = "userPersonalInfo";
+    let url = "https://my-json-server.typicode.com/mba2/code-editor/users";
 
       return (
-          Util.customFetch(url,loadingModule)
+          Util.customFetch(url)
           .then( (data) => {
             
-            Store.user = data.reduce( (acc,user, i) => {
+            return data.reduce( (acc,user, i) => {
               if(user.id === id) {
                 acc['id'] = user['id'],
                 acc['lastPenId'] = user['lastPenId'],
@@ -58,14 +57,8 @@ export class Util {
               }
               return acc;
             },{});
-
-            /** ONLY IF A REQUIRED MODULE IS PASSED... WE PUSH IT INTO THE STORE */
-            if(loadingModule) {
-              Store.successfulModules.push(loadingModule);
-            }
         })
         .catch( (data) => { console.log(data);})
       );
   };
-
 }

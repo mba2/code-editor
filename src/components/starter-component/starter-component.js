@@ -79,19 +79,34 @@ import { ComponentClass } from "../../core/ComponentClass";
 
 
 export class StarterComponent extends ComponentClass {
+  
   constructor(data) {
     super(data);
+  }
+  
+  get props() {
+    return {
+      property_1 : "Walter",
+      property_2 : "White"
+    }
+  }
+
+  set props(e) {
+    
   }
 }
 
 Component({
   html: `
     <div>
-      {{ property_1 }}
+      First Name: <span>{{ property_1 }}</span>
     </div>
     <div>
-      {{ property_2 }}
+      Last Name: <span>{{ property_2 }}</span>
     </div>
+    <button>
+      teste
+    </button>
   `,
   styles : `
     div {
