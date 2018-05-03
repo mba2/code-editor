@@ -2,6 +2,13 @@ import { Component } from "../../core/Component";
 import { ComponentClass } from "../../core/ComponentClass";
 
 
+
+export class Login extends ComponentClass {
+  constructor(data) {
+    super(data);
+  }
+}
+
 Component({
   html: `
     <div class="login-comp unknown-user">
@@ -16,10 +23,5 @@ Component({
     }
   `,
   selector : 'login',
+  constructor : Login
 });
-
-export class Login extends ComponentClass {
-  constructor() {
-    super();
-  }
-}

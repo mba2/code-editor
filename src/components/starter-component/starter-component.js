@@ -77,6 +77,13 @@ import { Component } from "../../core/Component";
 import { ComponentClass } from "../../core/ComponentClass";
 
 
+
+export class StarterComponent extends ComponentClass {
+  constructor(data) {
+    super(data);
+  }
+}
+
 Component({
   html: `
     <div>
@@ -92,11 +99,5 @@ Component({
     }
   `,
   selector : 'starter-component',
+  constructor: StarterComponent
 });
-
-export class StarterComponent extends ComponentClass {
-  constructor() {
-    super();
-    console.log('a');
-  }
-}

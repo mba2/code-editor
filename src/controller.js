@@ -8,80 +8,52 @@ import { Metadata } from "./core/Metadata";
 export class Controller {
 
 	constructor(settings) {
-		console.log(settings);
+		// console.log(settings);
 		// if()
-		// this._instantiatedComponents = {};
-		// this._instances = [];
+		this._components = [];
+		this._instances = [];
 		// this._debug = {
 		// 	"storeStatus" : this.storeStatus()
 		// };
 		// this._Store = Store;
 	}
 	
-
 	/**
 	 * 
 	 * @param {[component]} components 
 	 * 
-	 */
-
+	*/
 	addComponents(...components) {
-
-		this._instantiatedComponents = components.reduce( (acc,component,i,arr) => {
-			// CHECKING FOR A SELECTOR PROPERTY
-			if (!component.selector) {
-				console.warn('This component doesn`t have a `selector` property:', component);
-			}else {
-			// CHECKING FOR SELECTOR IN THE INDEX.HTML	
-				const tags = [...document.querySelectorAll(component.selector)];
-				if(!tags.length) {
-					console.warn(`No selector for this component: `, component);
-					return '';
-				} 
-
-				const instance = new component();
-				
-				// SET HTML FOR THE COMPONENT
-				instance.setHTML();
-				// SET STYLES FOR THE COMPONENT IF IT`S THE FIRST OF ITS TYPE
-				if(!this._instantiatedComponents.hasOwnProperty(component.selector)) {
-						instance.setStyles();
-				}
-			}
-
-
-			// WITH ARRAY
-			// const newComponents = components.reduce( (acc,component) => {
-				
-			// 	return acc.concat({
-			// 		name : component.selector,
-			// 		html : component.html,
-			// 		styles : component.styles
-			// 	});
-			// },[]);
-			// this._instantiatedComponents = this._instantiatedComponents.concat(newComponents);
-
-		// WITH OBJECT
-			return Object.assign({
-				[component.selector] : {
-					html : component.html,
-					styles : component.styles
-				}	
-			}, this._instantiatedComponents);
-		},this._instantiatedComponents);
+		components.forEach(component => {
+			if(this._components.includes(component)) {
+				throw { "message" : "One or more component(s) was(were) added twice."};
+			} else {
+				this._components = this._components.concat(component);
+			} 
+		});
+	
+		// CHECKING FOR A SELECTOR PROPERTY
+		// 	if (!component.selector) {
+		// 		console.warn('This component doesn`t have a `selector` property:', component);
+		// 	}
 	};
+
+	instatiateComponents() {
+		Metadata.components.forEach( e => {
+			let instance = new e.constructor(e);
+		});
+	}
 
   storeStatus() {
 		const self = this;
-		
-		return function() {
+		// return function() {
 			document.body.addEventListener('keyup', (e) => {
 				if(e.keyCode === 27) {
 					console.log('controller: ', self);
 					console.log('metadata: ', Metadata.components);
 				}
 			})
-		}
+		// }
 	};
 
 		// 	showCurrentViews : function() {
@@ -109,8 +81,8 @@ export class Controller {
 		// };
 
 		init() {
-			// this._debug.storeStatus();
-
+			this.storeStatus();
+			this.instatiateComponents();
 			// const loginComponent = this.views['login'];
 			// const headerComponent = this.views['app-header'];
 
