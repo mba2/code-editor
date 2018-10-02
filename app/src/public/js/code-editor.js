@@ -7,15 +7,6 @@ function setEditArea(e){
       for(var i = 0; i < totalActiveAreas;i++){
         activeAreas[i].style.width = recommendWidth - 8;
       }
-
-      //
-      // console.log(activeAreas);
-      // console.log(window.innerWidth);
-      // console.log(recommendWidth);
-
-
-
-
 }
 
 function runCode(){
@@ -55,5 +46,4 @@ window.onload = function(){
 
     $("#exec_btn").on("click",runCode);
     
-  console.log(options);
 };
